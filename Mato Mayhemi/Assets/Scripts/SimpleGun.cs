@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class SimpleGun : MonoBehaviour
 {
+    GamepadControls gc;
+
     private Rigidbody2D rb;
     public float force;
     public Transform muzzle;
     public GameObject bullet;
 
-    void Start()
+    void Awake()
     {
-        rb = bullet.GetComponent<Rigidbody2D>();
-        muzzle = transform.GetChild(0);
+        gc = new GamepadControls();
+
+        gc.Game.Shoot.performed += ctx => Shoot();
     }
 
-    void Update()
+    void OnEnable()
     {
-        if(Input.GetKeyDown(KeyCode.Z)) //vaiha uuempaan input systeemiin
-            Shoot();
+        gc.Enable();
+    }
+
+    void OnDisable()
+    {
+        gc.Disable();
+    }
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        muzzle = transform.GetChild(0);
     }
 
     void Shoot()

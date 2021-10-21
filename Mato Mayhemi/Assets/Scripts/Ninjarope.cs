@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimingScript : MonoBehaviour
+public class Ninjarope : MonoBehaviour
 {
     GamepadControls gc;
+    private bool rope;
+    public GameObject ropeGO;
 
     void Awake()
     {
         gc = new GamepadControls();
+
+        gc.Game.Rope.performed += ctx => Rope();
+    }
+
+    void Start()
+    {
+        rope = false;
     }
 
     void OnEnable()
@@ -21,13 +30,16 @@ public class AimingScript : MonoBehaviour
         gc.Disable();
     }
 
-    void Start()
+    void Rope()
     {
-        
+        if(rope)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
-    void Update()
-    {
-        
-    }
 }
