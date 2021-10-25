@@ -58,13 +58,13 @@ public class MovementScript : MonoBehaviour
     void Move()
     {
         print("move");
-        Vector2 m = new Vector2(horizontal, 0) * Time.deltaTime;
+        Vector2 m = new Vector2(horizontal, 0) * speed * Time.deltaTime;
         transform.Translate(m, Space.World); //hullu
     }
 
     void Jump()
     {
-        if(CheckGround()  > 2)
+        if(CheckGround() != 0)
         {
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
