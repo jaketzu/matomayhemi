@@ -19,17 +19,18 @@ public class Digging : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3Int pos = Vector3Int.FloorToInt(gameObject.transform.position);
+        Vector3 pos = gameObject.transform.position;
 
-        for(int x = pos.x - 4; x < (pos.x + 4); x++)
+        for(float x = pos.x - 6; x < (pos.x + 6); x++)
         {
-            for(int y = pos.y - 4; y < (pos.y + 4); y++)
+            for(float y = pos.y - 6; y < (pos.y + 6); y++)
             {
-                float distance = Mathf.Sqrt( Mathf.Pow(x,2) + Mathf.Pow(y, 2));
-
-                if(distance < 3f)
+                float dc = x * x;
+                float dr = y * y;
+                if (dc+dr <= 5*5)
                 {
-                    tilemap.SetTile(new Vector3Int(x, y, 0), null);
+                    
+                    tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(x),Mathf.RoundToInt(y),0),null);
                 }
                 
                 
@@ -39,5 +40,6 @@ public class Digging : MonoBehaviour
         
         
     }
+   
     
 }
