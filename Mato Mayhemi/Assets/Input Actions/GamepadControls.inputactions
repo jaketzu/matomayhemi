@@ -46,17 +46,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "WeaponNext",
+                    "name": "Switch Weapon",
                     "type": "Button",
                     "id": "6d1bd159-2850-4221-9313-a75c0de9476d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "WeaponBack",
-                    "type": "Button",
-                    "id": "bac3121d-a00b-4aee-8109-78c9a860085a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -104,22 +96,11 @@
                 {
                     "name": "",
                     "id": "38d676bc-e4fc-400a-a8e3-e65f83980432",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WeaponNext",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ab9d7dd1-0872-4d59-b2c1-f158f1cf9ad2",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WeaponBack",
+                    "action": "Switch Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -127,6 +108,17 @@
                     "name": "",
                     "id": "9c6c9351-f191-441d-b32e-0955e7c664ab",
                     "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dig",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5d148a8-8693-4282-ba39-1b3f49e8e63f",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -149,17 +141,6 @@
                     "name": "",
                     "id": "a0066ab1-cca2-4894-a2bf-1eb8945c3eef",
                     "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fd7f9ec0-4e37-4213-855e-51b5dad0038e",
-                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

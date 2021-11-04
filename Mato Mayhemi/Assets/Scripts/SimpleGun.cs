@@ -7,7 +7,7 @@ public class SimpleGun : MonoBehaviour
     GamepadControls gc;
 
     public float force;
-    public Transform muzzle;
+    private Transform muzzle;
     public GameObject bullet;
 
     void Awake()
@@ -29,7 +29,7 @@ public class SimpleGun : MonoBehaviour
 
     void Start()
     {
-        muzzle = transform.GetChild(0);
+        muzzle = transform.GetChild(1);
     }
 
     void Shoot()

@@ -36,7 +36,7 @@ public class AimingScript : MonoBehaviour
 
     void Start()
     {
-        gun = transform.GetChild(0);
+        gun = transform.GetChild(2);
         rb = gun.GetComponent<Rigidbody2D>();
     }
 

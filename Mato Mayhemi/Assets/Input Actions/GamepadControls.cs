@@ -59,17 +59,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""WeaponNext"",
+                    ""name"": ""Switch Weapon"",
                     ""type"": ""Button"",
                     ""id"": ""6d1bd159-2850-4221-9313-a75c0de9476d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""WeaponBack"",
-                    ""type"": ""Button"",
-                    ""id"": ""bac3121d-a00b-4aee-8109-78c9a860085a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -117,22 +109,11 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38d676bc-e4fc-400a-a8e3-e65f83980432"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""WeaponNext"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ab9d7dd1-0872-4d59-b2c1-f158f1cf9ad2"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WeaponBack"",
+                    ""action"": ""Switch Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -140,6 +121,17 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""9c6c9351-f191-441d-b32e-0955e7c664ab"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dig"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5d148a8-8693-4282-ba39-1b3f49e8e63f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -162,17 +154,6 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a0066ab1-cca2-4894-a2bf-1eb8945c3eef"",
                     ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fd7f9ec0-4e37-4213-855e-51b5dad0038e"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -351,8 +332,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         m_Game_AimVer = m_Game.FindAction("AimVer", throwIfNotFound: true);
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
         m_Game_Rope = m_Game.FindAction("Rope", throwIfNotFound: true);
-        m_Game_WeaponNext = m_Game.FindAction("WeaponNext", throwIfNotFound: true);
-        m_Game_WeaponBack = m_Game.FindAction("WeaponBack", throwIfNotFound: true);
+        m_Game_SwitchWeapon = m_Game.FindAction("Switch Weapon", throwIfNotFound: true);
         m_Game_Dig = m_Game.FindAction("Dig", throwIfNotFound: true);
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         // Menu
@@ -412,8 +392,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_AimVer;
     private readonly InputAction m_Game_Shoot;
     private readonly InputAction m_Game_Rope;
-    private readonly InputAction m_Game_WeaponNext;
-    private readonly InputAction m_Game_WeaponBack;
+    private readonly InputAction m_Game_SwitchWeapon;
     private readonly InputAction m_Game_Dig;
     private readonly InputAction m_Game_Jump;
     public struct GameActions
@@ -425,8 +404,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         public InputAction @AimVer => m_Wrapper.m_Game_AimVer;
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
         public InputAction @Rope => m_Wrapper.m_Game_Rope;
-        public InputAction @WeaponNext => m_Wrapper.m_Game_WeaponNext;
-        public InputAction @WeaponBack => m_Wrapper.m_Game_WeaponBack;
+        public InputAction @SwitchWeapon => m_Wrapper.m_Game_SwitchWeapon;
         public InputAction @Dig => m_Wrapper.m_Game_Dig;
         public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -453,12 +431,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Rope.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRope;
                 @Rope.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRope;
                 @Rope.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRope;
-                @WeaponNext.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWeaponNext;
-                @WeaponNext.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWeaponNext;
-                @WeaponNext.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWeaponNext;
-                @WeaponBack.started -= m_Wrapper.m_GameActionsCallbackInterface.OnWeaponBack;
-                @WeaponBack.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnWeaponBack;
-                @WeaponBack.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnWeaponBack;
+                @SwitchWeapon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
                 @Dig.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
                 @Dig.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
                 @Dig.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
@@ -484,12 +459,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Rope.started += instance.OnRope;
                 @Rope.performed += instance.OnRope;
                 @Rope.canceled += instance.OnRope;
-                @WeaponNext.started += instance.OnWeaponNext;
-                @WeaponNext.performed += instance.OnWeaponNext;
-                @WeaponNext.canceled += instance.OnWeaponNext;
-                @WeaponBack.started += instance.OnWeaponBack;
-                @WeaponBack.performed += instance.OnWeaponBack;
-                @WeaponBack.canceled += instance.OnWeaponBack;
+                @SwitchWeapon.started += instance.OnSwitchWeapon;
+                @SwitchWeapon.performed += instance.OnSwitchWeapon;
+                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
                 @Dig.started += instance.OnDig;
                 @Dig.performed += instance.OnDig;
                 @Dig.canceled += instance.OnDig;
@@ -540,8 +512,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         void OnAimVer(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnRope(InputAction.CallbackContext context);
-        void OnWeaponNext(InputAction.CallbackContext context);
-        void OnWeaponBack(InputAction.CallbackContext context);
+        void OnSwitchWeapon(InputAction.CallbackContext context);
         void OnDig(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }
