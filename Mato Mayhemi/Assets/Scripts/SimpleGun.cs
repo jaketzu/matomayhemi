@@ -6,7 +6,6 @@ public class SimpleGun : MonoBehaviour
 {
     GamepadControls gc;
 
-    private Rigidbody2D rb;
     public float force;
     public Transform muzzle;
     public GameObject bullet;
@@ -30,13 +29,12 @@ public class SimpleGun : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         muzzle = transform.GetChild(0);
     }
 
     void Shoot()
     {
-        bullet = Instantiate(bullet, muzzle.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(force, 0));
+        bullet = Instantiate(bullet, muzzle.position, transform.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
     }
 }

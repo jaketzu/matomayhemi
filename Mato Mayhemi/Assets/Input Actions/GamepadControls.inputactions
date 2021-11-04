@@ -30,14 +30,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "AimMouse",
-                    "type": "Value",
-                    "id": "882807f4-df6b-41c6-a3f2-352af74c1421",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "2ff5a478-51af-43eb-81f5-cf1b395a9cda",
@@ -100,30 +92,8 @@
                 },
                 {
                     "name": "",
-                    "id": "37b8e2d5-b24c-481f-a481-10813f0efb1f",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b3bbd69a-ee12-4bad-ac41-f1588002f074",
                     "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rope",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "642c085c-49e1-4490-9531-3623af88a652",
-                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -144,30 +114,8 @@
                 },
                 {
                     "name": "",
-                    "id": "bb9ebe46-8994-49a3-ac53-359e47996a56",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WeaponNext",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ab9d7dd1-0872-4d59-b2c1-f158f1cf9ad2",
                     "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WeaponBack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c57895be-905a-4b9e-a6d9-015b7d04388e",
-                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -188,17 +136,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a85161a1-ad15-401c-a777-285d0629a195",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dig",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6898bf48-b238-42cf-a20e-a8c5806ebc74",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -210,8 +147,19 @@
                 },
                 {
                     "name": "",
-                    "id": "751033b1-0dee-4f45-9ee4-5d34e6cc49fe",
-                    "path": "<Keyboard>/upArrow",
+                    "id": "a0066ab1-cca2-4894-a2bf-1eb8945c3eef",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd7f9ec0-4e37-4213-855e-51b5dad0038e",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -350,50 +298,6 @@
                     "action": "AimVer",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "2fc01d6d-598c-40ca-833f-b3a01600790e",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "7f7894fe-0319-4062-b5d8-81ac2e317fe9",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "833ef22c-e8c1-4a3d-87c5-e1709fd43d29",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "5ffab4ac-8893-4aac-aa0e-8868ea4afb06",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AimMouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
