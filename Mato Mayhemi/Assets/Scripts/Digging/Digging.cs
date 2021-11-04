@@ -7,6 +7,8 @@ using UnityEngine.Tilemaps;
 public class Digging : MonoBehaviour
 {
     public Tilemap tilemap;
+
+    float add = 30;
     void Start()
     {
         
@@ -21,13 +23,13 @@ public class Digging : MonoBehaviour
     {
         Vector3 pos = gameObject.transform.position;
 
-        for(float x = pos.x - 6; x < (pos.x + 6); x++)
+        for(float x = pos.x - add; x < (pos.x + add); x++)
         {
-            for(float y = pos.y - 6; y < (pos.y + 6); y++)
+            for(float y = pos.y - add; y < (pos.y + add); y++)
             {
                 float dc = x * x;
                 float dr = y * y;
-                if (dc+dr <= 5*5)
+                if (dc+dr <= 16*16)
                 {
                     
                     tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(x),Mathf.RoundToInt(y),0),null);
