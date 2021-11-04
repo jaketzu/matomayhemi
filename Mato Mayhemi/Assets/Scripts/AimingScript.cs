@@ -10,12 +10,11 @@ public class AimingScript : MonoBehaviour
     private float horizontal;
     private float vertical;
 
-    GameObject lookPoint;
-    public float offset;
-    Transform player;
+    private Transform gun;
+    private Rigidbody2D rb;
 
+    private float angle;
 
-    //private Vector2 mousePos;
 
     void Awake()
     {
@@ -23,8 +22,6 @@ public class AimingScript : MonoBehaviour
 
         gc.Game.AimHor.performed += ctx => horizontal = ctx.ReadValue<float>();
         gc.Game.AimVer.performed += ctx => vertical = ctx.ReadValue<float>();
-
-        //gc.Game.AimMouse.performed += ctx => mousePos = ctx.ReadValue<Vector2>();
     }
 
     void OnEnable()
@@ -39,29 +36,21 @@ public class AimingScript : MonoBehaviour
 
     void Start()
     {
-        player = transform.parent.transform;
-        lookPoint = player.GetChild(1).gameObject;
+        gun = transform.GetChild(2);
+        rb = gun.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         if(horizontal != 0 || vertical != 0)
             Aim();
-
-        //AimMouse();
     }
 
     void Aim()
     {
-        lookPoint.transform.position = new Vector2(player.position.x + horizontal + offset, player.position.y + vertical + offset);
-        transform.LookAt(lookPoint.transform.position);
-    }
+        gun.position = new Vector2(transform.position.x + horizontal, transform.position.y + vertical);
 
-    
-    /*void AimMouse()
-    {
-        //gameObject.transform.LookAt(mousePos);
-        transform.position = Camera.main.ScreenToWorldPoint(mousePos);
-        print(Camera.main.ScreenToWorldPoint(mousePos));
-    }*/
+        angle = Mathf.Atan2(gun.position.y - transform.position.y, gun.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+        gun.eulerAngles = new Vector3(0, 0, angle);
+    }
 }
