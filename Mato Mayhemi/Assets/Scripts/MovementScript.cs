@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovementScript : MonoBehaviour
 {
-    private float moveDir;
+    GamepadControls gc;
+
+    private float horizontal;
     public float speed;
 
     public float jumpVel;
@@ -16,6 +19,26 @@ public class MovementScript : MonoBehaviour
 
     [SerializeField]private LayerMask groundLayerMask;
 
+    void Awake()
+    {
+        gc = new GamepadControls();
+
+        gc.Game.Move.performed += ctx => horizontal = ctx.ReadValue<float>();
+        gc.Game.Move.canceled += ctx => horizontal = 0;
+
+        gc.Game.Jump.performed += ctx => Jump();
+    }
+
+    void OnEnable()
+    {
+        gc.Game.Enable();
+    }
+
+    void OnDisable()
+    {
+        gc.Game.Disable();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,23 +48,27 @@ public class MovementScript : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0) //vaiha uuempaan input systeemiin
+        if(horizontal != 0)
+        {
+            print("horizontal");
             Move();
-
-        if(Input.GetKeyDown(KeyCode.UpArrow) && CheckGround() > 0) //vaiha uuempaan input systeemiin
-            Jump();
+        }
     }
 
     void Move()
     {
-        moveDir = Input.GetAxisRaw("Horizontal"); //vaiha uuempaan input systeemiin
-        transform.Translate(Vector3.right * moveDir * speed * Time.deltaTime); //hullu
+        print("move");
+        Vector2 m = new Vector2(horizontal, 0) * speed * Time.deltaTime;
+        transform.Translate(m, Space.World); //hullu
     }
 
     void Jump()
     {
-        rb.velocity = Vector2.up * jumpVel;
-        jumpsLeft--;
+        if(CheckGround() != 0)
+        {
+            rb.velocity = Vector2.up * jumpVel;
+            jumpsLeft--;
+        }
     }
 
     private float CheckGround()
