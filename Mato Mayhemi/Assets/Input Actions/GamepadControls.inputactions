@@ -84,6 +84,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d395c409-0c4c-47f6-9ca6-193aa2eb89e5",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b3bbd69a-ee12-4bad-ac41-f1588002f074",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",

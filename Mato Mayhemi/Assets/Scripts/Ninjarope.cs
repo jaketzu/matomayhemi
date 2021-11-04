@@ -6,7 +6,8 @@ public class Ninjarope : MonoBehaviour
 {
     GamepadControls gc;
     private bool rope;
-    public GameObject ropeGO;
+    public GameObject ropePrefab;
+    private Transform ropeGO;
 
     void Awake()
     {
@@ -30,16 +31,20 @@ public class Ninjarope : MonoBehaviour
         gc.Disable();
     }
 
-    void Rope()
+    /*void Rope()
     {
-        if(rope)
+        if(!rope)
         {
+            rope = true;
 
+            Instantiate(ropeGO, this.transform.position, transform.rotation);
         }
         else
         {
+            rope = false;
 
+            //Destroy(); //rope
         }
-    }
+    }*/
 
 }

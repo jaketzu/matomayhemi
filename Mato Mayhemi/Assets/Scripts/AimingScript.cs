@@ -11,7 +11,6 @@ public class AimingScript : MonoBehaviour
     private float vertical;
 
     private Transform gun;
-    private Rigidbody2D rb;
 
     private float angle;
 
@@ -37,7 +36,6 @@ public class AimingScript : MonoBehaviour
     void Start()
     {
         gun = transform.GetChild(2);
-        rb = gun.GetComponent<Rigidbody2D>();
     }
 
     void Update()
