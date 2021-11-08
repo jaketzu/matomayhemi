@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1014676253322672032}
   - component: {fileID: 1014676253322672036}
   - component: {fileID: 471942608}
-  - component: {fileID: 8339210371743137983}
   - component: {fileID: 9195309230609520466}
   - component: {fileID: 4171136674989173737}
   m_Layer: 3
@@ -90,19 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c8a918a8ef61a45ad318f4d0c2419d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8339210371743137983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014676253322672047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f717df604dbf84ab9889388c5f518d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ropeGO: {fileID: 0}
 --- !u!61 &9195309230609520466
 BoxCollider2D:
   m_ObjectHideFlags: 0

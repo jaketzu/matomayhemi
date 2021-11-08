@@ -9,15 +9,23 @@ public class Ninjarope : MonoBehaviour
     private bool rope;
     private float horizontal;
     private float vertical;
+    private float angle;
+    private Quaternion rotQ;
+    private float rot;
 
     public Transform ropePrefab;
+    private Transform player;
+    private Transform gun;
+    private SpringJoint joint;
+    public float maxDist;
+    public float minDist;
+    public float spring;
+    public float damper;
+    public float massScale;
     private LineRenderer lr;
     private Vector2 grapplePoint;
     public LayerMask layerMask;
     private Transform ropeGO;
-
-
-    private float angle;
 
     void Awake()
     {
@@ -42,9 +50,15 @@ public class Ninjarope : MonoBehaviour
     void Start()
     {
         rope = false;
+        player = transform.parent;
+        gun = player.GetChild(2);
         lr = GetComponent<LineRenderer>();
     }
 
+    void LateUpdate() 
+    {
+        DrawRope();
+    }
 
     void Rope()
     {
@@ -52,21 +66,44 @@ public class Ninjarope : MonoBehaviour
         {
             rope = true;
 
-            //RaycastHit hit;
-            //if(Physics.Raycast(transform.position, ))
+            angle = Mathf.Atan2(gun.position.y - player.transform.position.y, gun.position.x - player.transform.position.x) * Mathf.Rad2Deg - 90f;
+            rotQ = Quaternion.Euler(0, 0, angle);
+            rot = rotQ.z;
 
-            /*ropeGO = Instantiate(ropePrefab, new Vector2(transform.position.x + horizontal, transform.position.y + vertical), transform.rotation);
-            ropeGO.position = new Vector2(transform.position.x + horizontal, transform.position.y + vertical);
+            RaycastHit2D hit;
+            if(Physics2D.Raycast(new Vector2(0,0), transform.up, 100f, layerMask))
+            {
+                print(hit.point);
+                grapplePoint = hit.point;
+                joint = player.gameObject.AddComponent<SpringJoint>();
+                joint.autoConfigureConnectedAnchor = false;
+                joint.connectedAnchor = grapplePoint;
 
-            angle = Mathf.Atan2(ropeGO.position.y - transform.position.y, ropeGO.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
-            ropeGO.eulerAngles = new Vector3(0, 0, angle);*/
+                float distance = Vector3.Distance(player.position, grapplePoint);
+
+                joint.maxDistance = distance * maxDist;
+                joint.minDistance = distance * minDist;
+
+                joint.spring = spring;
+                joint.damper = damper;
+                joint.massScale = massScale;
+
+                print(hit.point);
+            }
+
         }
         else
         {
             rope = false;
 
-           /*Destroy(ropeGO.gameObject);*/
+
         }
+    }
+
+    void DrawRope()
+    {
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, grapplePoint);
     }
 
 }

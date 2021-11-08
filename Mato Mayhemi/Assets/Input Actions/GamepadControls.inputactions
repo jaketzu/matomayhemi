@@ -106,6 +106,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ecc978d4-6d11-49a9-9ce8-5105037a4911",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rope",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "38d676bc-e4fc-400a-a8e3-e65f83980432",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
