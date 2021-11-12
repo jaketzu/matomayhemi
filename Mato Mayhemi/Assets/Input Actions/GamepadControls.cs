@@ -27,6 +27,14 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""AdjustRope"",
+                    ""type"": ""Value"",
+                    ""id"": ""4156b27c-ead9-440c-9b9d-d85b680f09b9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""AimHor"",
                     ""type"": ""Value"",
                     ""id"": ""7f397b00-8f52-4429-ae0b-3fc5f3ebf37d"",
@@ -110,7 +118,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b3bbd69a-ee12-4bad-ac41-f1588002f074"",
                     ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rope"",
@@ -121,7 +129,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""ecc978d4-6d11-49a9-9ce8-5105037a4911"",
                     ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rope"",
@@ -314,6 +322,72 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""action"": ""AimVer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""e03995d3-60fd-44e6-bc31-f98f80708fef"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""853d12fb-e7d0-45a8-b30d-ba2297ca4ccc"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""694c1a94-0035-4dae-afe0-e6464153757f"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""6fcdc27f-7019-45d2-a376-4f16df543da8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8d34f884-ed13-411b-ba87-1d23d8b92c2c"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4ee2031b-17bf-4b15-90e0-0fba5ca5eb69"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -350,6 +424,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
+        m_Game_AdjustRope = m_Game.FindAction("AdjustRope", throwIfNotFound: true);
         m_Game_AimHor = m_Game.FindAction("AimHor", throwIfNotFound: true);
         m_Game_AimVer = m_Game.FindAction("AimVer", throwIfNotFound: true);
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
@@ -410,6 +485,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_Move;
+    private readonly InputAction m_Game_AdjustRope;
     private readonly InputAction m_Game_AimHor;
     private readonly InputAction m_Game_AimVer;
     private readonly InputAction m_Game_Shoot;
@@ -422,6 +498,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         private @GamepadControls m_Wrapper;
         public GameActions(@GamepadControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Game_Move;
+        public InputAction @AdjustRope => m_Wrapper.m_Game_AdjustRope;
         public InputAction @AimHor => m_Wrapper.m_Game_AimHor;
         public InputAction @AimVer => m_Wrapper.m_Game_AimVer;
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
@@ -441,6 +518,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
+                @AdjustRope.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
+                @AdjustRope.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
+                @AdjustRope.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
                 @AimHor.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAimHor;
                 @AimHor.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAimHor;
                 @AimHor.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAimHor;
@@ -469,6 +549,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @AdjustRope.started += instance.OnAdjustRope;
+                @AdjustRope.performed += instance.OnAdjustRope;
+                @AdjustRope.canceled += instance.OnAdjustRope;
                 @AimHor.started += instance.OnAimHor;
                 @AimHor.performed += instance.OnAimHor;
                 @AimHor.canceled += instance.OnAimHor;
@@ -530,6 +613,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     public interface IGameActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnAdjustRope(InputAction.CallbackContext context);
         void OnAimHor(InputAction.CallbackContext context);
         void OnAimVer(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);

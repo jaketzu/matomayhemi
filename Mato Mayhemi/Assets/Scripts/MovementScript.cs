@@ -7,8 +7,12 @@ public class MovementScript : MonoBehaviour
 {
     GamepadControls gc;
 
+    private Ninjarope nr;
+
     private float horizontal;
+    private float vertical;
     public float speed;
+    public float force;
 
     public float jumpVel;
     public float jumps;
@@ -16,6 +20,8 @@ public class MovementScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D bc;
+
+    private SpringJoint2D joint;
 
     [SerializeField]private LayerMask groundLayerMask;
 
@@ -25,6 +31,9 @@ public class MovementScript : MonoBehaviour
 
         gc.Game.Move.performed += ctx => horizontal = ctx.ReadValue<float>();
         gc.Game.Move.canceled += ctx => horizontal = 0;
+
+        gc.Game.AdjustRope.performed += ctx => vertical = ctx.ReadValue<float>();
+        gc.Game.AdjustRope.canceled += ctx => vertical = 0;
 
         gc.Game.Jump.performed += ctx => Jump();
     }
@@ -41,8 +50,13 @@ public class MovementScript : MonoBehaviour
 
     void Start()
     {
+        nr = transform.GetChild(3).GetComponent<Ninjarope>();
+
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+
+        joint = GetComponent<SpringJoint2D>();
+
         jumpsLeft = jumps;
     }
 
@@ -50,19 +64,34 @@ public class MovementScript : MonoBehaviour
     {
         if(horizontal != 0)
         {
-            Move();
+            if(!joint.enabled)
+                Move();
+            else
+                RopeMove();
         }
+
+        if(vertical != 0)
+        {
+            nr.ChangeDistance(vertical);
+        }
+
     }
 
     void Move()
     {
-        Vector2 m = new Vector2(horizontal, 0) * speed * Time.deltaTime;
-        transform.Translate(m, Space.World); //hullu
+        Vector2 move = new Vector2(horizontal, 0) * speed * Time.deltaTime;
+        transform.Translate(move, Space.World); //hullu
+    }
+
+    void RopeMove()
+    {
+        Vector2 move = new Vector2(horizontal, 0) * force * Time.deltaTime;
+        rb.AddForce(move);
     }
 
     void Jump()
     {
-        if(CheckGround() != 0)
+        if(CheckGround() != 0 && !joint.enabled)
         {
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;

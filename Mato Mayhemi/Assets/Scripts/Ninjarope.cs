@@ -5,27 +5,22 @@ using UnityEngine;
 public class Ninjarope : MonoBehaviour
 {
     GamepadControls gc;
-
-    private bool rope;
     private float horizontal;
     private float vertical;
-    private float angle;
-    private Quaternion rotQ;
-    private float rot;
 
-    public Transform ropePrefab;
+    private bool rope;
+    public float ropeAdjust;
+
     private Transform player;
     private Transform gun;
-    private SpringJoint joint;
-    public float maxDist;
-    public float minDist;
-    public float spring;
-    public float damper;
-    public float massScale;
-    private LineRenderer lr;
-    private Vector2 grapplePoint;
+
+    private SpringJoint2D joint;
+    
     public LayerMask layerMask;
-    private Transform ropeGO;
+    private Vector2 grapplePoint;
+    private float distance;
+
+    private LineRenderer lr;
 
     void Awake()
     {
@@ -50,14 +45,21 @@ public class Ninjarope : MonoBehaviour
     void Start()
     {
         rope = false;
+
         player = transform.parent;
         gun = player.GetChild(2);
+
+        joint = player.GetComponent<SpringJoint2D>();
+        joint.enabled = false;
+
         lr = GetComponent<LineRenderer>();
+        lr.enabled = false;
     }
 
     void LateUpdate() 
     {
-        DrawRope();
+        if(rope)
+            DrawRope();
     }
 
     void Rope()
@@ -65,38 +67,26 @@ public class Ninjarope : MonoBehaviour
         if(!rope)
         {
             rope = true;
+            lr.enabled = true;
 
-            angle = Mathf.Atan2(gun.position.y - player.transform.position.y, gun.position.x - player.transform.position.x) * Mathf.Rad2Deg - 90f;
-            rotQ = Quaternion.Euler(0, 0, angle);
-            rot = rotQ.z;
-
-            RaycastHit2D hit;
-            if(Physics2D.Raycast(new Vector2(0,0), transform.up, 100f, layerMask))
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, gun.up, 100f, layerMask); //laske jotenkin ilman aseen transformista
+            if(hit.collider != null)
             {
-                print(hit.point);
                 grapplePoint = hit.point;
-                joint = player.gameObject.AddComponent<SpringJoint>();
-                joint.autoConfigureConnectedAnchor = false;
+
+                joint.enabled = true;
                 joint.connectedAnchor = grapplePoint;
-
-                float distance = Vector3.Distance(player.position, grapplePoint);
-
-                joint.maxDistance = distance * maxDist;
-                joint.minDistance = distance * minDist;
-
-                joint.spring = spring;
-                joint.damper = damper;
-                joint.massScale = massScale;
-
-                print(hit.point);
+                distance = Vector2.Distance(transform.position, grapplePoint);
+                joint.distance = distance;
             }
-
         }
         else
         {
             rope = false;
 
+            joint.enabled = false;
 
+            lr.enabled = false;
         }
     }
 
@@ -106,4 +96,8 @@ public class Ninjarope : MonoBehaviour
         lr.SetPosition(1, grapplePoint);
     }
 
+    public void ChangeDistance(float amount)
+    {
+        joint.distance -= amount * ropeAdjust * Time.deltaTime;
+    } 
 }

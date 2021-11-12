@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "AdjustRope",
+                    "type": "Value",
+                    "id": "4156b27c-ead9-440c-9b9d-d85b680f09b9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "AimHor",
                     "type": "Value",
                     "id": "7f397b00-8f52-4429-ae0b-3fc5f3ebf37d",
@@ -97,7 +105,7 @@
                     "name": "",
                     "id": "b3bbd69a-ee12-4bad-ac41-f1588002f074",
                     "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Rope",
@@ -108,7 +116,7 @@
                     "name": "",
                     "id": "ecc978d4-6d11-49a9-9ce8-5105037a4911",
                     "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Rope",
@@ -299,6 +307,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "AimVer",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "e03995d3-60fd-44e6-bc31-f98f80708fef",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustRope",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "853d12fb-e7d0-45a8-b30d-ba2297ca4ccc",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustRope",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "694c1a94-0035-4dae-afe0-e6464153757f",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustRope",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "6fcdc27f-7019-45d2-a376-4f16df543da8",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustRope",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8d34f884-ed13-411b-ba87-1d23d8b92c2c",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustRope",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4ee2031b-17bf-4b15-90e0-0fba5ca5eb69",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustRope",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
