@@ -79,6 +79,8 @@ public class MovementScript : MonoBehaviour
 
     void Move()
     {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+
         Vector2 move = new Vector2(horizontal, 0) * speed * Time.deltaTime;
         transform.Translate(move, Space.World); //hullu
     }
@@ -104,6 +106,5 @@ public class MovementScript : MonoBehaviour
         if(raycastHit.collider != null)
             jumpsLeft = jumps;
         return jumpsLeft;
-
     }
 }
