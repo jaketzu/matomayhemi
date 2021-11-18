@@ -32,34 +32,29 @@ public class LevelGeneration : MonoBehaviour
 
 
         
-
-        print(pixelColor);
-        print(colorMappings[1].color + "    YYYYYYYYYYxd");
-        //for (int i = 0; i < colorMappings.Length; i++)
-        //{
-
-        //    if (colorMappings[i].color == pixelColor)
-        //    {
-        //        tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[i].tile);
-
-        //    }
-
-        //}
-
-        if(colorMappings[0].color == pixelColor)
+        
+        for (int i = 0; i < colorMappings.Length; i++)
         {
-            tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[0].tile);
-            return;
+            
+            if(pixelColor.a == 0){
+                return;
+            }
+            
+            if (CompareColors(pixelColor, colorMappings[i].color))
+            {
+                tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[i].tile);
+
+            }
+
         }
-        if (colorMappings[1].color == pixelColor)
-        {
-            tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[1].tile);
-            return;
-        }
-        if (colorMappings[2].color == pixelColor)
-        {
-            tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[2].tile);
-            return;
-        }
+    }
+
+    bool CompareColors(Color first, Color second){
+        string hexCode = ColorUtility.ToHtmlStringRGB(first);
+        string hexCode2 = ColorUtility.ToHtmlStringRGB(second);
+        
+        /*  print(hexCode); */
+
+        return (hexCode == hexCode2);
     }
 }
