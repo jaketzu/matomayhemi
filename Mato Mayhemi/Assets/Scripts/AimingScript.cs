@@ -10,6 +10,9 @@ public class AimingScript : MonoBehaviour
     private float horizontal;
     private float vertical;
 
+    private Vector2 dir;
+    public float deadzone;
+
     private Transform gun;
 
     private float angle;
@@ -40,13 +43,15 @@ public class AimingScript : MonoBehaviour
 
     void Update()
     {
-        if(horizontal != 0 || vertical != 0)
+        dir = new Vector2(horizontal, vertical);
+
+        if(dir.magnitude > deadzone)
             Aim();
     }
 
     void Aim()
     {
-        gun.position = new Vector2(transform.position.x + horizontal, transform.position.y + vertical);
+        gun.position = new Vector2(transform.position.x + dir.normalized.x, transform.position.y + dir.normalized.y);
 
         angle = Mathf.Atan2(gun.position.y - transform.position.y, gun.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
         gun.eulerAngles = new Vector3(0, 0, angle);

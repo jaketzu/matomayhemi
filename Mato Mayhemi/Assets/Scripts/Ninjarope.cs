@@ -5,13 +5,12 @@ using UnityEngine;
 public class Ninjarope : MonoBehaviour
 {
     GamepadControls gc;
-    private float horizontal;
-    private float vertical;
 
     private bool rope;
     public float ropeAdjust;
 
     private Transform player;
+    private BoxCollider2D[] bc;
     private Transform gun;
 
     private SpringJoint2D joint;
@@ -27,9 +26,6 @@ public class Ninjarope : MonoBehaviour
         gc = new GamepadControls();
 
         gc.Game.Rope.performed += ctx => Rope();
-
-        gc.Game.AimHor.performed += ctx => horizontal = ctx.ReadValue<float>();
-        gc.Game.AimVer.performed += ctx => vertical = ctx.ReadValue<float>();
     }
 
     void OnEnable()
@@ -47,6 +43,7 @@ public class Ninjarope : MonoBehaviour
         rope = false;
 
         player = transform.parent;
+        bc = player.GetComponents<BoxCollider2D>();
         gun = player.GetChild(2);
 
         joint = player.GetComponent<SpringJoint2D>();
@@ -69,9 +66,14 @@ public class Ninjarope : MonoBehaviour
             rope = true;
             lr.enabled = true;
 
+            bc[0].enabled = false;
+            bc[1].enabled = false;
+
             RaycastHit2D hit = Physics2D.Raycast(transform.position, gun.up, 100f, layerMask); //laske jotenkin ilman aseen transformista
             if(hit.collider != null)
             {
+                bc[0].enabled = true;
+                bc[1].enabled = true;
                 grapplePoint = hit.point;
 
                 joint.enabled = true;
@@ -79,6 +81,9 @@ public class Ninjarope : MonoBehaviour
                 distance = Vector2.Distance(transform.position, grapplePoint);
                 joint.distance = distance;
             }
+
+            bc[0].enabled = true;
+            bc[1].enabled = true;
         }
         else
         {

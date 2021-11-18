@@ -7,13 +7,13 @@ public class SimpleGun : MonoBehaviour
     GamepadControls gc;
 
     public float force;
+
     private Transform muzzle;
-    public GameObject bullet;
+    public GameObject bulletPrefab;
 
     void Awake()
     {
         gc = new GamepadControls();
-
         gc.Game.Shoot.performed += ctx => Shoot();
     }
 
@@ -34,7 +34,7 @@ public class SimpleGun : MonoBehaviour
 
     void Shoot()
     {
-        bullet = Instantiate(bullet, muzzle.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
     }
 }

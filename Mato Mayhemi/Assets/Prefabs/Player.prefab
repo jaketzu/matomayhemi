@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  force: 300
   jumpVel: 5
   jumps: 2
   jumpsLeft: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c8a918a8ef61a45ad318f4d0c2419d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadzone: 0.75
 --- !u!61 &9195309230609520466
 BoxCollider2D:
   m_ObjectHideFlags: 0

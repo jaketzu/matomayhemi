@@ -19,7 +19,8 @@ public class MovementScript : MonoBehaviour
     [SerializeField]private float jumpsLeft;
 
     private Rigidbody2D rb;
-    private BoxCollider2D bc;
+    private BoxCollider2D[] bc;
+    private SpriteRenderer sr;
 
     private SpringJoint2D joint;
 
@@ -53,7 +54,7 @@ public class MovementScript : MonoBehaviour
         nr = transform.GetChild(3).GetComponent<Ninjarope>();
 
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        bc = GetComponents<BoxCollider2D>();
 
         joint = GetComponent<SpringJoint2D>();
 
@@ -83,6 +84,16 @@ public class MovementScript : MonoBehaviour
 
         Vector2 move = new Vector2(horizontal, 0) * speed * Time.deltaTime;
         transform.Translate(move, Space.World); //hullu
+
+        if(horizontal < 0)
+        {
+            sr.flipX = true;
+        }
+
+        if(horizontal > 0)
+        {
+            sr.flipX = false;
+        }
     }
 
     void RopeMove()
@@ -102,7 +113,7 @@ public class MovementScript : MonoBehaviour
 
     private float CheckGround()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.1f, groundLayerMask);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bc[0].bounds.center, bc[0].bounds.size, 0f, Vector2.down, 0.1f, groundLayerMask);
         if(raycastHit.collider != null)
             jumpsLeft = jumps;
         return jumpsLeft;
