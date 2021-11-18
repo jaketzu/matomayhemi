@@ -20,7 +20,9 @@ public class MovementScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D[] bc;
-    private SpriteRenderer sr;
+    private SpriteRenderer[] bodysr = new SpriteRenderer[2];
+    private SpriteRenderer gunsr;
+    private Animator anim;
 
     private SpringJoint2D joint;
 
@@ -37,6 +39,19 @@ public class MovementScript : MonoBehaviour
         gc.Game.AdjustRope.canceled += ctx => vertical = 0;
 
         gc.Game.Jump.performed += ctx => Jump();
+
+        nr = transform.GetChild(3).GetComponent<Ninjarope>();
+
+        rb = GetComponent<Rigidbody2D>();
+        bc = GetComponents<BoxCollider2D>();
+
+        bodysr[0] = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        bodysr[1] = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        gunsr = transform.GetChild(2).GetComponentInChildren<SpriteRenderer>();
+
+        anim = GetComponent<Animator>();
+
+        joint = GetComponent<SpringJoint2D>();
     }
 
     void OnEnable()
@@ -51,31 +66,40 @@ public class MovementScript : MonoBehaviour
 
     void Start()
     {
-        nr = transform.GetChild(3).GetComponent<Ninjarope>();
-
-        rb = GetComponent<Rigidbody2D>();
-        bc = GetComponents<BoxCollider2D>();
-
-        joint = GetComponent<SpringJoint2D>();
-
         jumpsLeft = jumps;
     }
 
     void Update()
     {
-        if(horizontal != 0)
+        if(rb.velocity.y > 0.01)
         {
-            if(!joint.enabled)
-                Move();
-            else
-                RopeMove();
+            anim.SetBool("Jumping", true);
         }
+        else
+        {
+            anim.SetBool("Jumping", false);
+        }
+
+        if (horizontal != 0)
+        {
+            if (!joint.enabled)
+            {
+                Move();
+                anim.SetBool("Moving", true);
+            }
+            else
+            {
+                RopeMove();
+                anim.SetBool("Moving", false);
+            }
+        }
+        else
+            anim.SetBool("Moving", false);
 
         if(vertical != 0)
         {
             nr.ChangeDistance(vertical);
         }
-
     }
 
     void Move()
@@ -85,14 +109,24 @@ public class MovementScript : MonoBehaviour
         Vector2 move = new Vector2(horizontal, 0) * speed * Time.deltaTime;
         transform.Translate(move, Space.World); //hullu
 
-        if(horizontal < 0)
+        if (horizontal < 0)
         {
-            sr.flipX = true;
+            for (int i = 0; i < bodysr.Length; i++)
+            {
+                bodysr[i].flipX = false;
+            }
+
+            gunsr.flipY = true;
         }
 
-        if(horizontal > 0)
+        if (horizontal > 0)
         {
-            sr.flipX = false;
+            for (int i = 0; i < bodysr.Length; i++)
+            {
+                bodysr[i].flipX = true;
+            }
+
+            gunsr.flipY = false;
         }
     }
 
@@ -108,6 +142,8 @@ public class MovementScript : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
+
+            anim.SetBool("Jumping", true);
         }
     }
 
@@ -115,7 +151,11 @@ public class MovementScript : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc[0].bounds.center, bc[0].bounds.size, 0f, Vector2.down, 0.1f, groundLayerMask);
         if(raycastHit.collider != null)
+        {
             jumpsLeft = jumps;
+
+            anim.SetBool("Jumping", false);
+        }
         return jumpsLeft;
     }
 }
