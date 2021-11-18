@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 25
-  bullet: {fileID: 6837330939213560352, guid: e27f20f063b4b9e4eb59b11995e27d4d, type: 3}
+  bulletPrefab: {fileID: 6837330939213560352, guid: e27f20f063b4b9e4eb59b11995e27d4d, type: 3}
 --- !u!1 &7937705053677535462
 GameObject:
   m_ObjectHideFlags: 0
