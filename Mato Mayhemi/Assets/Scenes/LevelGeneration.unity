@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 1098404868}
   - component: {fileID: 1098404870}
   - component: {fileID: 1098404869}
+  - component: {fileID: 1098404871}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -368,6 +369,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1098404871
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098404867}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1470614893
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,8 +428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcf4b4045eef154e8e9f99b73a59a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 2800000, guid: dc362d740f04d154eba0e8c5363d8884, type: 3}
+  map: {fileID: 2800000, guid: 609f1662f1d59154b9f91070d9df067f, type: 3}
   tilemap: {fileID: 1098404870}
   colorMappings:
-  - color: {r: 0, g: 0, b: 0, a: 0}
+  - color: {r: 0, g: 0, b: 0, a: 1}
     tile: {fileID: 11400000, guid: 65a8dc7af701874499f211d2e97c6386, type: 2}
+  - color: {r: 1, g: 0.659, b: 0, a: 0}
+    tile: {fileID: 11400000, guid: 5d7778c8e54a0f54695de496432c63ae, type: 2}
+  - color: {r: 1, g: 0, b: 0.16470589, a: 1}
+    tile: {fileID: 11400000, guid: 3bfd2bfcb05bd2a429401a6e785e6142, type: 2}

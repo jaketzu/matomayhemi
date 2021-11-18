@@ -12,6 +12,7 @@ public class LevelGeneration : MonoBehaviour
     void Start()
     {
         GenerateLevel();
+        
     }
 
     void GenerateLevel()
@@ -25,13 +26,40 @@ public class LevelGeneration : MonoBehaviour
         }
     }
 
-    void GenerateTile(int x, int y) {
+    void GenerateTile(int x, int y)
+    {
         Color pixelColor = map.GetPixel(x, y);
 
-        if (pixelColor.a == 0)
+
+        
+
+        print(pixelColor);
+        print(colorMappings[1].color + "    YYYYYYYYYYxd");
+        //for (int i = 0; i < colorMappings.Length; i++)
+        //{
+
+        //    if (colorMappings[i].color == pixelColor)
+        //    {
+        //        tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[i].tile);
+
+        //    }
+
+        //}
+
+        if(colorMappings[0].color == pixelColor)
+        {
+            tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[0].tile);
             return;
-
-        tilemap.SetTile(new Vector3Int(x,y,0), colorMappings[0].tile);
-
+        }
+        if (colorMappings[1].color == pixelColor)
+        {
+            tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[1].tile);
+            return;
+        }
+        if (colorMappings[2].color == pixelColor)
+        {
+            tilemap.SetTile(new Vector3Int(x, y, 0), colorMappings[2].tile);
+            return;
+        }
     }
 }
