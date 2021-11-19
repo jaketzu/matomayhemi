@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGun : MonoBehaviour
+public class ShotgunScript : MonoBehaviour
 {
     GamepadControls gc;
 
@@ -10,6 +10,8 @@ public class SimpleGun : MonoBehaviour
 
     private Transform muzzle;
     public GameObject bulletPrefab;
+
+    public int shotCount;
 
     void Awake()
     {
@@ -30,8 +32,11 @@ public class SimpleGun : MonoBehaviour
     }
 
     void Shoot()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
+    {    
+        for (int i = 0; i < shotCount; i++)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
+            bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
+        }
     }
 }

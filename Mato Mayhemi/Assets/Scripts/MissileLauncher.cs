@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGun : MonoBehaviour
+public class MissileLauncher : MonoBehaviour
 {
     GamepadControls gc;
 
     public float force;
 
     private Transform muzzle;
-    public GameObject bulletPrefab;
+    public GameObject missilePrefab;
 
     void Awake()
     {
@@ -30,8 +30,8 @@ public class SimpleGun : MonoBehaviour
     }
 
     void Shoot()
-    {
-        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
+    {    
+        GameObject missile = Instantiate(missilePrefab, muzzle.position, transform.rotation);
+        missile.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
     }
 }

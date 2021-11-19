@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class MissileScript : MonoBehaviour
 {
     public string shooter;
 
@@ -11,12 +11,14 @@ public class BulletScript : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             //takedamage player
+            //boom
             //riko environment
             Destroy(gameObject);
         }
         
         if(collision.gameObject.CompareTag("Ground"))
         {
+            //boom
             //riko environment
             Destroy(gameObject);
         }

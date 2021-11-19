@@ -20,6 +20,7 @@ public class MovementScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D[] bc;
+
     private SpriteRenderer[] bodysr = new SpriteRenderer[2];
     private SpriteRenderer gunsr;
     private Animator anim;
@@ -40,14 +41,14 @@ public class MovementScript : MonoBehaviour
 
         gc.Game.Jump.performed += ctx => Jump();
 
-        nr = transform.GetChild(3).GetComponent<Ninjarope>();
+        nr = transform.GetChild(2).GetComponent<Ninjarope>();
 
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponents<BoxCollider2D>();
 
         bodysr[0] = transform.GetChild(0).GetComponent<SpriteRenderer>();
         bodysr[1] = transform.GetChild(1).GetComponent<SpriteRenderer>();
-        gunsr = transform.GetChild(2).GetComponentInChildren<SpriteRenderer>();
+        SwitchGunSR(0);
 
         anim = GetComponent<Animator>();
 
@@ -157,5 +158,13 @@ public class MovementScript : MonoBehaviour
             anim.SetBool("Jumping", false);
         }
         return jumpsLeft;
+    }
+
+    public void SwitchGunSR(int gun)
+    {
+        gunsr = transform.GetChild(3).GetChild(gun).GetChild(0).GetComponent<SpriteRenderer>();
+
+        if(GetComponent<SpriteRenderer>().flipX == false)
+            gunsr.flipY = false;
     }
 }

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 14787151094592354}
   m_Layer: 0
   m_Name: PistolBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,3 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf6986031e3d2c4fbedca803af954bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: 

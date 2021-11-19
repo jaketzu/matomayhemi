@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGun : MonoBehaviour
+public class GrenadeLauncher : MonoBehaviour
 {
     GamepadControls gc;
 
     public float force;
-
     private Transform muzzle;
-    public GameObject bulletPrefab;
+    public GameObject bombPrefab;
 
     void Awake()
     {
         gc = new GamepadControls();
+
         gc.Game.Shoot.performed += ctx => Shoot();
 
         muzzle = transform.GetChild(1);
@@ -31,7 +31,7 @@ public class SimpleGun : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
+        GameObject bomb = Instantiate(bombPrefab, muzzle.position, transform.rotation);
+        bomb.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);
     }
 }
