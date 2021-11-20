@@ -13,17 +13,20 @@ public class AudioBlaster : MonoBehaviour
 
     void Awake()
     {
+        //ohjainhommii
         gc = new GamepadControls();
         gc.Game.Shoot.performed += ctx => Shoot();
 
         muzzle = transform.GetChild(1);
     }
 
+    //ohjainhommii
     void OnEnable()
     {
         gc.Enable();
     }
 
+    //ohjainhommii
     void OnDisable()
     {
         gc.Disable();
@@ -31,17 +34,22 @@ public class AudioBlaster : MonoBehaviour
 
     void Shoot()
     {
-        Vector2 direction = new Vector2(transform.parent.parent.position.x - transform.position.x, transform.parent.parent.position.y - transform.position.y);
+        //katsotaan aseen suunta
+        Vector2 direction = transform.up;
 
-        RaycastHit2D[] hit = Physics2D.BoxCastAll(muzzle.position, new Vector2(size, size), transform.rotation.z, transform.up);
+        //raycastataan laatikko aseen suusta eteenpäin tietyllä koolla ja talletetaan kaikki colliderit johon laatikko osuu
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(muzzle.position, new Vector2(size, size), transform.rotation.z, direction);
+        //mennään kaikkien laatikon osumien objektejien läpi
         for (int i = 0; i < hit.Length; i++)
         {
+            //jos objekti on pelaaja, lisätään pelaajalle voimaa aseen suuntaan
             if(hit[i].collider.CompareTag("Player"))
             {
                 hit[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
             }
 
-            transform.parent.parent.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+            //lisätään voimaa aseen vastakkaiseen suuntaan pelaajalle joka pitää asetta
+            transform.parent.parent.GetComponent<Rigidbody2D>().AddForce(-direction * force, ForceMode2D.Impulse);
         }
     }
 }

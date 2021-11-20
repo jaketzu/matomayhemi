@@ -10,7 +10,8 @@ public class Ninjarope : MonoBehaviour
     public float ropeAdjust;
 
     private Transform player;
-    private BoxCollider2D[] bc;
+    private BoxCollider2D[] bc = new BoxCollider2D[2];
+    
     private Transform gun;
 
     private SpringJoint2D joint;
@@ -23,16 +24,28 @@ public class Ninjarope : MonoBehaviour
 
     void Awake()
     {
+        //ohjainhommii
         gc = new GamepadControls();
 
         gc.Game.Rope.performed += ctx => Rope();
+
+        lr = GetComponent<LineRenderer>();
+
+        player = transform.parent;
+
+        joint = player.GetComponent<SpringJoint2D>();
+
+        bc = player.GetComponents<BoxCollider2D>();
+        gun = player.GetChild(2);
     }
 
+    //ohjainhommii
     void OnEnable()
     {
         gc.Enable();
     }
 
+    //ohjainhommii
     void OnDisable()
     {
         gc.Disable();
@@ -42,46 +55,47 @@ public class Ninjarope : MonoBehaviour
     {
         rope = false;
 
-        player = transform.parent;
-        bc = player.GetComponents<BoxCollider2D>();
-        gun = player.GetChild(2);
-
-        joint = player.GetComponent<SpringJoint2D>();
         joint.enabled = false;
 
-        lr = GetComponent<LineRenderer>();
         lr.enabled = false;
     }
 
     void LateUpdate() 
     {
+        //jos rope on käytössä, piirretään rope
         if(rope)
             DrawRope();
     }
 
     void Rope()
     {
+        //jos rope ei ole käytössä
         if(!rope)
         {
             rope = true;
             lr.enabled = true;
 
+            //disabloidaan pelaajan colliderit frameksi, jotta raycast ei osu omaan pelaajaan
             bc[0].enabled = false;
             bc[1].enabled = false;
 
+            //raycastataan pelaajan kohdasta aseesta ylöspäin
             RaycastHit2D hit = Physics2D.Raycast(transform.position, gun.up, 100f, layerMask); //laske jotenkin ilman aseen transformista
             if(hit.collider != null)
             {
-                bc[0].enabled = true;
-                bc[1].enabled = true;
+                //asetetaan grapplepoint raycastin osumaan kohtaan
                 grapplePoint = hit.point;
 
+                //enabloidaan pelaajan springjoint
                 joint.enabled = true;
+                //yhdistetään springjoint osuttuun seinään
                 joint.connectedAnchor = grapplePoint;
+                //asetetaan springjointin pituus pelaajan ja grapplepointin väliseksi pituudeksi
                 distance = Vector2.Distance(transform.position, grapplePoint);
                 joint.distance = distance;
             }
 
+            //enabloidaan pelaajan colliderit
             bc[0].enabled = true;
             bc[1].enabled = true;
         }
@@ -97,12 +111,15 @@ public class Ninjarope : MonoBehaviour
 
     void DrawRope()
     {
+        //piirretään viiva pelaajasta grapplepointtiin
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, grapplePoint);
     }
 
+    //callataan pelaajan movementscriptistä
     public void ChangeDistance(float amount)
     {
+        //asetetaan ropen pituus uudelleen katsoen mihin suuntaan pelaajaa painaa kertaa nopeus
         joint.distance -= amount * ropeAdjust * Time.deltaTime;
     } 
 }

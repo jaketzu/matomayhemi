@@ -75,6 +75,14 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Lasso"",
+                    ""type"": ""Button"",
+                    ""id"": ""49df76e4-8285-4df6-a5ca-9604dcd53457"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Dig"",
                     ""type"": ""Button"",
                     ""id"": ""a187109d-8b49-470d-ab58-f9d9758648c3"",
@@ -166,17 +174,6 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Switch Weapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9c6c9351-f191-441d-b32e-0955e7c664ab"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dig"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -421,6 +418,28 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""action"": ""AdjustRope"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7c7be70-31d0-43a5-9369-9f20eb97d0a4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lasso"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22137d7b-532b-485c-99e7-db2a2552b4f3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lasso"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -463,6 +482,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
         m_Game_Rope = m_Game.FindAction("Rope", throwIfNotFound: true);
         m_Game_SwitchWeapon = m_Game.FindAction("Switch Weapon", throwIfNotFound: true);
+        m_Game_Lasso = m_Game.FindAction("Lasso", throwIfNotFound: true);
         m_Game_Dig = m_Game.FindAction("Dig", throwIfNotFound: true);
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         // Menu
@@ -524,6 +544,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Game_Shoot;
     private readonly InputAction m_Game_Rope;
     private readonly InputAction m_Game_SwitchWeapon;
+    private readonly InputAction m_Game_Lasso;
     private readonly InputAction m_Game_Dig;
     private readonly InputAction m_Game_Jump;
     public struct GameActions
@@ -537,6 +558,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
         public InputAction @Rope => m_Wrapper.m_Game_Rope;
         public InputAction @SwitchWeapon => m_Wrapper.m_Game_SwitchWeapon;
+        public InputAction @Lasso => m_Wrapper.m_Game_Lasso;
         public InputAction @Dig => m_Wrapper.m_Game_Dig;
         public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -569,6 +591,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @SwitchWeapon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
                 @SwitchWeapon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
                 @SwitchWeapon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
+                @Lasso.started -= m_Wrapper.m_GameActionsCallbackInterface.OnLasso;
+                @Lasso.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnLasso;
+                @Lasso.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnLasso;
                 @Dig.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
                 @Dig.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
                 @Dig.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
@@ -600,6 +625,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @SwitchWeapon.started += instance.OnSwitchWeapon;
                 @SwitchWeapon.performed += instance.OnSwitchWeapon;
                 @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+                @Lasso.started += instance.OnLasso;
+                @Lasso.performed += instance.OnLasso;
+                @Lasso.canceled += instance.OnLasso;
                 @Dig.started += instance.OnDig;
                 @Dig.performed += instance.OnDig;
                 @Dig.canceled += instance.OnDig;
@@ -652,6 +680,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnRope(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        void OnLasso(InputAction.CallbackContext context);
         void OnDig(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }

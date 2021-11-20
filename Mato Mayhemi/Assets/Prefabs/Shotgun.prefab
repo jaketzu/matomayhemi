@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 634163216096041286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 5731148614985222223}
   - {fileID: 2205195000217654369}
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 30
-  spread: 20
   bulletPrefab: {fileID: 6837330939213560352, guid: e27f20f063b4b9e4eb59b11995e27d4d, type: 3}
   shotCount: 6
 --- !u!1 &1679067209572725997
@@ -149,7 +148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c163cf32ff579444bbc30191d11b6adb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

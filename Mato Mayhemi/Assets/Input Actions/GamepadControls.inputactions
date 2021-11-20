@@ -62,6 +62,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Lasso",
+                    "type": "Button",
+                    "id": "49df76e4-8285-4df6-a5ca-9604dcd53457",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Dig",
                     "type": "Button",
                     "id": "a187109d-8b49-470d-ab58-f9d9758648c3",
@@ -153,17 +161,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Switch Weapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9c6c9351-f191-441d-b32e-0955e7c664ab",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -408,6 +405,28 @@
                     "action": "AdjustRope",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d7c7be70-31d0-43a5-9369-9f20eb97d0a4",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lasso",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22137d7b-532b-485c-99e7-db2a2552b4f3",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lasso",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

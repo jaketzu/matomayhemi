@@ -31,6 +31,7 @@ public class MovementScript : MonoBehaviour
 
     void Awake()
     {
+        //ohjainhommii
         gc = new GamepadControls();
 
         gc.Game.Move.performed += ctx => horizontal = ctx.ReadValue<float>();
@@ -55,11 +56,13 @@ public class MovementScript : MonoBehaviour
         joint = GetComponent<SpringJoint2D>();
     }
 
+    //ohjainhommii
     void OnEnable()
     {
         gc.Game.Enable();
     }
 
+    //ohjainhommii
     void OnDisable()
     {
         gc.Game.Disable();
@@ -81,13 +84,16 @@ public class MovementScript : MonoBehaviour
             anim.SetBool("Jumping", false);
         }
 
+        //jos on liikettä
         if (horizontal != 0)
         {
+            //jos et ole ropessa
             if (!joint.enabled)
             {
                 Move();
                 anim.SetBool("Moving", true);
             }
+            //jos olet ropessa
             else
             {
                 RopeMove();
@@ -97,6 +103,7 @@ public class MovementScript : MonoBehaviour
         else
             anim.SetBool("Moving", false);
 
+        //jos tunnistetaan ylös tai alas liikettä kun ollaan ropessa
         if(vertical != 0)
         {
             nr.ChangeDistance(vertical);
@@ -105,11 +112,15 @@ public class MovementScript : MonoBehaviour
 
     void Move()
     {
+        //tämä on sitä varten että jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
         rb.velocity = new Vector2(0, rb.velocity.y);
 
+        //liikesuunta ja nopeus asetetaan
         Vector2 move = new Vector2(horizontal, 0) * speed * Time.deltaTime;
+        //siirretään pelaajaa
         transform.Translate(move, Space.World); //hullu
 
+        //animaatiota
         if (horizontal < 0)
         {
             for (int i = 0; i < bodysr.Length; i++)
@@ -133,14 +144,17 @@ public class MovementScript : MonoBehaviour
 
     void RopeMove()
     {
+        //jos olemme ropessa, emme käytetä transform.translate vain lisätään voimaa rigidbodyyn
         Vector2 move = new Vector2(horizontal, 0) * force * Time.deltaTime;
         rb.AddForce(move);
     }
 
     void Jump()
     {
+        //katsotaan onko meillä hyppyjä jäljellä ja emme ole ropessa
         if(CheckGround() != 0 && !joint.enabled)
         {
+            //lisätään voimaa rigidbodyyn
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
 
@@ -150,19 +164,23 @@ public class MovementScript : MonoBehaviour
 
     private float CheckGround()
     {
+        //raycastataan laatikko pelaajan alle jotta voimme katsoa koskeeko maata
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc[0].bounds.center, bc[0].bounds.size, 0f, Vector2.down, 0.1f, groundLayerMask);
         if(raycastHit.collider != null)
         {
+            //jos koskemme maahan resetataan hypyt
             jumpsLeft = jumps;
 
             anim.SetBool("Jumping", false);
         }
+        //palautetaan hyppyjen määrä
         return jumpsLeft;
     }
 
     public void SwitchGunSR(int gun)
     {
-        gunsr = transform.GetChild(3).GetChild(gun).GetChild(0).GetComponent<SpriteRenderer>();
+        //asetetaan asespriteksi switchweapon scriptin valitun aseen sprite renderer
+        gunsr = transform.GetChild(4).GetChild(gun).GetChild(0).GetComponent<SpriteRenderer>();
 
         if(GetComponent<SpriteRenderer>().flipX == false)
             gunsr.flipY = false;
