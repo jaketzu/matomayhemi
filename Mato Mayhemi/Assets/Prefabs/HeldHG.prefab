@@ -91,10 +91,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2233479382384129029}
-  - component: {fileID: 377789948823678652}
-  - component: {fileID: 5043044018352068861}
+  - component: {fileID: 4244895464391246502}
   m_Layer: 0
-  m_Name: Holy Grenade
+  m_Name: HeldHG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,23 +114,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &377789948823678652
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4348298402126079249}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.01, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.17
---- !u!114 &5043044018352068861
+--- !u!114 &4244895464391246502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +123,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4348298402126079249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab6b7b66fe191849a53620c50e6156e, type: 3}
+  m_Script: {fileID: 11500000, guid: daa231eab5c149d48ad876121f92e401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
+  bulletPrefab: {fileID: 4348298402126079249, guid: c3c89656b24bd914ca054b3f063f43b8, type: 3}
+  damage: 5
+  force: 15
+  shots: 1
+  firerate: 1

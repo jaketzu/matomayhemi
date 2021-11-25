@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 1014676253322672032}
   - component: {fileID: 1014676253322672036}
   - component: {fileID: 471942608}
+  - component: {fileID: 1273014656049165861}
   - component: {fileID: 9195309230609520466}
   - component: {fileID: 4171136674989173737}
+  - component: {fileID: 9170301481317578722}
+  - component: {fileID: 5110172470110471370}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -73,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c289c79615afa8a4e95a270fa53044d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadzone: 0.75
   speed: 7
   force: 300
   jumpVel: 5
@@ -94,6 +98,140 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadzone: 0.75
+--- !u!114 &1273014656049165861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014676253322672047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: bb82dc41a0a2722419fd3f7e89265587, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1014676253322672036}
+        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 800fbf82-9bbe-4f01-a899-2d421b3ef075
+    m_ActionName: Game/Move[/DualShock4GamepadHID/leftStick/left,/XInputControllerWindows/leftStick/left,/DualShock4GamepadHID/leftStick/right,/XInputControllerWindows/leftStick/right,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1014676253322672036}
+        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4156b27c-ead9-440c-9b9d-d85b680f09b9
+    m_ActionName: Game/AdjustRope[/DualShock4GamepadHID/leftStick/down,/XInputControllerWindows/leftStick/down,/DualShock4GamepadHID/leftStick/up,/XInputControllerWindows/leftStick/up,/Keyboard/downArrow,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 471942608}
+        m_TargetAssemblyTypeName: AimingScript, Assembly-CSharp
+        m_MethodName: Aim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7f397b00-8f52-4429-ae0b-3fc5f3ebf37d
+    m_ActionName: Game/AimHor[/DualShock4GamepadHID/rightStick/left,/XInputControllerWindows/rightStick/left,/DualShock4GamepadHID/rightStick/right,/XInputControllerWindows/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 471942608}
+        m_TargetAssemblyTypeName: AimingScript, Assembly-CSharp
+        m_MethodName: Aim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4eed6e51-66fb-47ae-b0d5-0d0f0a25c80a
+    m_ActionName: Game/AimVer[/DualShock4GamepadHID/rightStick/down,/XInputControllerWindows/rightStick/down,/DualShock4GamepadHID/rightStick/up,/XInputControllerWindows/rightStick/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1014676253322672036}
+        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2ff5a478-51af-43eb-81f5-cf1b395a9cda
+    m_ActionName: Game/Shoot[/DualShock4GamepadHID/rightShoulder,/XInputControllerWindows/rightShoulder,/DualShock4GamepadHID/rightTrigger,/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 76d150a6-ffc3-4812-9e68-daa7c2fc9942
+    m_ActionName: Game/Rope[/DualShock4GamepadHID/leftTrigger,/XInputControllerWindows/leftTrigger,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d1bd159-2850-4221-9313-a75c0de9476d
+    m_ActionName: Game/Switch Weapon[/DualShock4GamepadHID/buttonNorth,/XInputControllerWindows/buttonNorth,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49df76e4-8285-4df6-a5ca-9604dcd53457
+    m_ActionName: Game/Lasso[/DualShock4GamepadHID/buttonWest,/XInputControllerWindows/buttonWest,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a187109d-8b49-470d-ab58-f9d9758648c3
+    m_ActionName: Game/Dig[/DualShock4GamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bb90fdaa-bb77-46c7-8c87-f1096f50a586
+    m_ActionName: Game/Jump[/DualShock4GamepadHID/buttonSouth,/XInputControllerWindows/buttonSouth,/DualShock4GamepadHID/dpad/up,/XInputControllerWindows/dpad/up,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3fa80912-da3f-477c-8878-1cc8b8711fe0
+    m_ActionName: Menu/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Game
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!61 &9195309230609520466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,6 +284,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 0.45}
   m_EdgeRadius: 0
+--- !u!95 &9170301481317578722
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014676253322672047}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dae6121d37c7bb74182101a167777376, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!231 &5110172470110471370
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014676253322672047}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 0.005
+  m_DampingRatio: 0
+  m_Frequency: 1
 --- !u!1 &1358714297820758171
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +668,6 @@ Transform:
   - {fileID: 1343946100321039274}
   - {fileID: 4495625695088420424}
   - {fileID: 1784233381381078876}
-  - {fileID: 7877637908711293898}
   m_Father: {fileID: 1014676253322672034}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -981,66 +1157,4 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7046990662275024096, guid: c170548acdf9a464c85d58a7dd738bc7, type: 3}
   m_PrefabInstance: {fileID: 8317400226085074762}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8335059391192070095
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2454654506242076389}
-    m_Modifications:
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4348298402126079249, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-      propertyPath: m_Name
-      value: Holy Grenade
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
---- !u!4 &7877637908711293898 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2233479382384129029, guid: 67e59175b24f6614c938564ed01a7197, type: 3}
-  m_PrefabInstance: {fileID: 8335059391192070095}
   m_PrefabAsset: {fileID: 0}

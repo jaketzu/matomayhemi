@@ -63,7 +63,7 @@ public class WeaponSwitch : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 //callataan pelaajan movementscriptin aseen spriten vaihto funktio
-                transform.parent.GetComponent<MovementScript>().SwitchGunSR(selected);
+                transform.parent.GetComponent<AimingScript>().SwitchGun(selected);
             }
             else
                 weapon.gameObject.SetActive(false);

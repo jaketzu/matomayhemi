@@ -311,7 +311,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""cdcb3792-bda1-49a7-9fe0-866875725ee4"",
+                    ""id"": ""a8c14f02-5043-48b1-9c54-d637c2610325"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",

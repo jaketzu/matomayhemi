@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986094592229670192}
-  - component: {fileID: 5420486087497209040}
+  - component: {fileID: 8652831692718068776}
   - component: {fileID: 3206234212334451086}
   m_Layer: 0
   m_Name: Audio Blaster
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5420486087497209040
+--- !u!114 &8652831692718068776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,11 +43,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132832581216502923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17957fbeeadc7e4288b865f92714f15, type: 3}
+  m_Script: {fileID: 11500000, guid: daa231eab5c149d48ad876121f92e401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 20
-  force: 100
+  bulletPrefab: {fileID: 0}
+  damage: 0
+  force: 20
+  shots: 1
+  firerate: 1
 --- !u!95 &3206234212334451086
 Animator:
   serializedVersion: 3

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1412949084216199040}
-  - component: {fileID: 8822618010255963285}
+  - component: {fileID: 3725745620141605181}
   m_Layer: 0
   m_Name: GrenadeLauncher
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8822618010255963285
+--- !u!114 &3725745620141605181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,11 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4963133280709192287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a2ce6409bc90db42bd4a077d2a80c42, type: 3}
+  m_Script: {fileID: 11500000, guid: daa231eab5c149d48ad876121f92e401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7134368903347011652, guid: 608ec2af7ec088d4db656cdd815330b8, type: 3}
+  damage: 5
   force: 20
-  bombPrefab: {fileID: 7134368903347011652, guid: 608ec2af7ec088d4db656cdd815330b8, type: 3}
+  shots: 1
+  firerate: 1
 --- !u!1 &5187775155686831868
 GameObject:
   m_ObjectHideFlags: 0

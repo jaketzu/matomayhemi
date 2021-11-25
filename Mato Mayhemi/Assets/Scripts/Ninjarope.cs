@@ -58,6 +58,8 @@ public class Ninjarope : MonoBehaviour
         joint.enabled = false;
 
         lr.enabled = false;
+
+        SwitchGun(0);
     }
 
     void LateUpdate() 
@@ -121,5 +123,10 @@ public class Ninjarope : MonoBehaviour
     {
         //asetetaan ropen pituus uudelleen katsoen mihin suuntaan pelaajaa painaa kertaa nopeus
         joint.distance -= amount * ropeAdjust * Time.deltaTime;
-    } 
+    }
+
+    public void SwitchGun(int selectedGun)
+    {
+        gun = transform.parent.GetChild(4).GetChild(selectedGun);
+    }
 }

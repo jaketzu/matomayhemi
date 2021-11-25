@@ -39,6 +39,8 @@ public class ShotgunScript : MonoBehaviour
         //kunnes ollaan ammuttu kaikki ammukset
         for (int i = 0; i < shotCount; i++)
         {
+            //saa rotaatio
+
             //instatioidaan ammus aseen suusta ja lisätään siihen voimaa
             GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);
             bullet.GetComponent<Rigidbody2D>().AddForce(muzzle.up * force, ForceMode2D.Impulse);

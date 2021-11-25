@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class MovementScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     GamepadControls gc;
 
@@ -18,7 +17,7 @@ public class MovementScript : MonoBehaviour
 
     public float jumpVel;
     public float jumps;
-    [SerializeField]private float jumpsLeft;
+    [SerializeField] private float jumpsLeft;
 
     private Rigidbody2D rb;
     private BoxCollider2D[] bc = new BoxCollider2D[2];
@@ -27,7 +26,7 @@ public class MovementScript : MonoBehaviour
 
     private SpringJoint2D joint;
 
-    [SerializeField]private LayerMask groundLayerMask;
+    [SerializeField] private LayerMask groundLayerMask;
 
     private Transform gun;
 
@@ -79,7 +78,7 @@ public class MovementScript : MonoBehaviour
     {
         dir = new Vector2(horizontal, vertical);
 
-        if(rb.velocity.y > 0.01)
+        if (rb.velocity.y > 0.01)
         {
             anim.SetBool("Jumping", true);
         }
@@ -88,14 +87,17 @@ public class MovementScript : MonoBehaviour
             anim.SetBool("Jumping", false);
         }
 
-        //jos on liikett√§
+        //jos on liikett‰
         if (horizontal != 0)
         {
             //jos et ole ropessa
             if (!joint.enabled)
             {
-                Move();
-                anim.SetBool("Moving", true);
+                if (dir.magnitude > deadzone)
+                {
+                    Move();
+                    anim.SetBool("Moving", true);
+                }
             }
             //jos olet ropessa
             else
@@ -107,8 +109,8 @@ public class MovementScript : MonoBehaviour
         else
             anim.SetBool("Moving", false);
 
-        //jos tunnistetaan yl√∂s tai alas liikett√§ kun ollaan ropessa
-        if(vertical != 0)
+        //jos tunnistetaan ylˆs tai alas liikett‰ kun ollaan ropessa
+        if (vertical != 0)
         {
             nr.ChangeDistance(vertical);
         }
@@ -116,12 +118,12 @@ public class MovementScript : MonoBehaviour
 
     public void Move()
     {
-        //t√§m√§ on sit√§ varten ett√§ jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
+        //t‰m‰ on sit‰ varten ett‰ jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
         rb.velocity = new Vector2(0, rb.velocity.y);
 
         //liikesuunta ja nopeus asetetaan
         Vector2 move = new Vector2(horizontal, 0) * speed * Time.deltaTime;
-        //siirret√§√§n pelaajaa
+        //siirret‰‰n pelaajaa
         transform.Translate(move, Space.World); //hullu
 
         //animaatiota
@@ -138,17 +140,17 @@ public class MovementScript : MonoBehaviour
 
     public void RopeMove()
     {
-        //jos olemme ropessa, emme k√§ytet√§ transform.translate vain lis√§t√§√§n voimaa rigidbodyyn
+        //jos olemme ropessa, emme k‰ytet‰ transform.translate vain lis‰t‰‰n voimaa rigidbodyyn
         Vector2 move = new Vector2(horizontal, 0) * force * Time.deltaTime;
         rb.AddForce(move);
     }
 
     void Jump()
     {
-        //katsotaan onko meill√§ hyppyj√§ j√§ljell√§ ja emme ole ropessa
-        if(CheckGround() != 0 && !joint.enabled)
+        //katsotaan onko meill‰ hyppyj‰ j‰ljell‰ ja emme ole ropessa
+        if (CheckGround() != 0 && !joint.enabled)
         {
-            //lis√§t√§√§n voimaa rigidbodyyn
+            //lis‰t‰‰n voimaa rigidbodyyn
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
 
@@ -160,14 +162,14 @@ public class MovementScript : MonoBehaviour
     {
         //raycastataan laatikko pelaajan alle jotta voimme katsoa koskeeko maata
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc[0].bounds.center, bc[0].bounds.size, 0f, Vector2.down, 0.1f, groundLayerMask);
-        if(raycastHit.collider != null)
+        if (raycastHit.collider != null)
         {
             //jos koskemme maahan resetataan hypyt
             jumpsLeft = jumps;
 
             anim.SetBool("Jumping", false);
         }
-        //palautetaan hyppyjen m√§√§r√§
+        //palautetaan hyppyjen m‰‰r‰
         return jumpsLeft;
     }
 

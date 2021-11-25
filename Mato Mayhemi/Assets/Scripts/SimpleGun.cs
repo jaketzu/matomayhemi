@@ -32,7 +32,7 @@ public class SimpleGun : MonoBehaviour
         gc.Disable();
     }
 
-    void Shoot()
+    public void Shoot()
     {
         //instatioidaan ammus aseen suusta ja lisätään siihen voimaa
         GameObject bullet = Instantiate(bulletPrefab, muzzle.position, transform.rotation);

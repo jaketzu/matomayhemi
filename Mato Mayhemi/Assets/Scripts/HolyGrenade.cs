@@ -6,11 +6,9 @@ public class HolyGrenade : MonoBehaviour
 {
     GamepadControls gc;
 
-    private Rigidbody2D rb;
     private CircleCollider2D cc;
 
     public float force;
-    private bool thrown;
     public float timer;
 
     void Awake()
@@ -19,9 +17,7 @@ public class HolyGrenade : MonoBehaviour
         gc = new GamepadControls();
         gc.Game.Shoot.performed += ctx => Shoot();
 
-        rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CircleCollider2D>();
-
     }
 
     //ohjainhommii
@@ -36,15 +32,9 @@ public class HolyGrenade : MonoBehaviour
         gc.Disable();
     }
 
-    void Start()
-    {
-        rb.gravityScale = 0;
-        cc.enabled = false;
-    }
-
     void Update() 
     {
-        if(thrown)
+        if(transform.parent = null)
         {
             timer -= Time.deltaTime;
 
@@ -56,12 +46,15 @@ public class HolyGrenade : MonoBehaviour
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
-        thrown = true;
-        transform.parent = null;
-        rb.gravityScale = 1;
-        cc.enabled = true;
-        GetComponent<Rigidbody2D>().AddForce(transform.up * force, ForceMode2D.Impulse);
+        if (transform.parent != null)
+        {
+            GameObject grenade = Instantiate(gameObject, transform.position, transform.rotation);
+            grenade.AddComponent<Rigidbody2D>().AddForce(transform.up * force, ForceMode2D.Impulse);
+            grenade.GetComponent<CircleCollider2D>().enabled = true;
+
+            Destroy(gameObject);
+        }
     }
 }
