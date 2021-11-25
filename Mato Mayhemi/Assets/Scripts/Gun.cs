@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    GamepadControls gc;
-
     public GameObject bulletPrefab;
     private Transform muzzle;
 
@@ -15,28 +13,6 @@ public class Gun : MonoBehaviour
 
     public float firerate;
     float nextTimeToFire = 0;
-
-
-    void Awake()
-    {
-        //ohjainhommii
-        gc = new GamepadControls();
-        gc.Game.Shoot.performed += ctx => Shoot();
-
-        muzzle = transform.GetChild(1);
-    }
-
-    //ohjainhommii
-    void OnEnable()
-    {
-        gc.Enable();
-    }
-
-    //ohjainhommii
-    void OnDisable()
-    {
-        gc.Disable();
-    }
 
     public void Shoot()
     {
