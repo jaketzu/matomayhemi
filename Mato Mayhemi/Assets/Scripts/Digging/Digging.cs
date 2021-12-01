@@ -21,8 +21,9 @@ public class Digging : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 pos = gameObject.transform.position;
-
+        print(collision.GetContact(0).point);
+        Vector3 pos = collision.GetContact(0).point;
+        
         for(float x = pos.x - add; x < (pos.x + add); x++)
         {
             for(float y = pos.y - add; y < (pos.y + add); y++)
@@ -31,8 +32,12 @@ public class Digging : MonoBehaviour
                 float dr = y * y;
                 if (dc+dr <= 16*16)
                 {
+                    Vector3Int tilepos = tilemap.WorldToCell(pos + new Vector3(x,y,0));
+
+                    if(tilemap.GetTile(tilepos) != null){
+                        tilemap.SetTile(tilepos,null);
+                    }
                     
-                    tilemap.SetTile(new Vector3Int(Mathf.RoundToInt(x),Mathf.RoundToInt(y),0),null);
                 }
                 
                 
