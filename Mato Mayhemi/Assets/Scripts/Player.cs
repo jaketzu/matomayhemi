@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     private float distance;
 
     private int previousWeapon;
-    [HideInInspector] public int selected;
+    private int selected;
 
     private float aimHor;
     private float aimVer;
@@ -101,9 +101,8 @@ public class Player : MonoBehaviour
 
         lr.enabled = false;
 
-        //asetetaan valittu ase ensimmäiseksi
-        selected = 0;
-
+        //asetetaan valittu ase ensimmï¿½iseksi
+        selected = -1;
         SwitchGun();
     }
 
@@ -120,7 +119,7 @@ public class Player : MonoBehaviour
             anim.SetBool("Jumping", false);
         }
 
-        //jos on liikettä
+        //jos on liikettï¿½
         if (moveHor != 0)
         {
             //jos et ole ropessa
@@ -142,7 +141,7 @@ public class Player : MonoBehaviour
         else
             anim.SetBool("Moving", false);
 
-        //jos tunnistetaan ylös tai alas liikettä kun ollaan ropessa
+        //jos tunnistetaan ylï¿½s tai alas liikettï¿½ kun ollaan ropessa
         if (moveVer != 0)
         {
             joint.distance -= moveVer * ropeAdjust * Time.deltaTime;
@@ -151,26 +150,26 @@ public class Player : MonoBehaviour
         //lukee floatit ja muuttaa ne vector2
         aimDir = new Vector2(aimHor, aimVer);
 
-        //katsoo onko tikut tarpeeksi kaukana keskeltä
+        //katsoo onko tikut tarpeeksi kaukana keskeltï¿½
         if (aimDir.magnitude > deadzone)
             Aim();
     }
 
     void LateUpdate()
     {
-        //jos rope on käytössä, piirretään rope
+        //jos rope on kï¿½ytï¿½ssï¿½, piirretï¿½ï¿½n rope
         if (rope)
             DrawRope();
     }
 
     public void Move()
     {
-        //tämä on sitä varten että jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
+        //tï¿½mï¿½ on sitï¿½ varten ettï¿½ jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
         rb.velocity = new Vector2(0, rb.velocity.y);
 
         //liikesuunta ja nopeus asetetaan
         Vector2 move = new Vector2(moveHor, 0) * speed * Time.deltaTime;
-        //siirretään pelaajaa
+        //siirretï¿½ï¿½n pelaajaa
         transform.Translate(move, Space.World); //hullu
 
         //animaatiota
@@ -187,10 +186,10 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        //katsotaan onko meillä hyppyjä jäljellä ja emme ole ropessa
+        //katsotaan onko meillï¿½ hyppyjï¿½ jï¿½ljellï¿½ ja emme ole ropessa
         if (CheckGround() != 0 && !joint.enabled)
         {
-            //lisätään voimaa rigidbodyyn
+            //lisï¿½tï¿½ï¿½n voimaa rigidbodyyn
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
 
@@ -200,7 +199,7 @@ public class Player : MonoBehaviour
 
     void Rope()
     {
-        //jos rope ei ole käytössä
+        //jos rope ei ole kï¿½ytï¿½ssï¿½
         if (!rope)
         {
             rope = true;
@@ -210,7 +209,7 @@ public class Player : MonoBehaviour
             bc[0].enabled = false;
             bc[1].enabled = false;
 
-            //raycastataan pelaajan kohdasta aseesta ylöspäin
+            //raycastataan pelaajan kohdasta aseesta ylï¿½spï¿½in
             RaycastHit2D hit = Physics2D.Raycast(transform.position, gun.up, 100f, grappleLayerMask); //laske jotenkin ilman aseen transformista
             if (hit.collider != null)
             {
@@ -219,9 +218,9 @@ public class Player : MonoBehaviour
 
                 //enabloidaan pelaajan springjoint
                 joint.enabled = true;
-                //yhdistetään springjoint osuttuun seinään
+                //yhdistetï¿½ï¿½n springjoint osuttuun seinï¿½ï¿½n
                 joint.connectedAnchor = grapplePoint;
-                //asetetaan springjointin pituus pelaajan ja grapplepointin väliseksi pituudeksi
+                //asetetaan springjointin pituus pelaajan ja grapplepointin vï¿½liseksi pituudeksi
                 distance = Vector2.Distance(transform.position, grapplePoint);
                 joint.distance = distance;
             }
@@ -241,14 +240,14 @@ public class Player : MonoBehaviour
     }
     void DrawRope()
     {
-        //piirretään viiva pelaajasta grapplepointtiin
+        //piirretï¿½ï¿½n viiva pelaajasta grapplepointtiin
         lr.SetPosition(0, transform.position);
         lr.SetPosition(1, grapplePoint);
     }
 
     public void RopeMove()
     {
-        //jos olemme ropessa, emme käytetä transform.translate vain lisätään voimaa rigidbodyyn
+        //jos olemme ropessa, emme kï¿½ytetï¿½ transform.translate vain lisï¿½tï¿½ï¿½n voimaa rigidbodyyn
         Vector2 move = new Vector2(moveHor, 0) * force * Time.deltaTime;
         rb.AddForce(move);
     }
@@ -264,7 +263,7 @@ public class Player : MonoBehaviour
 
             anim.SetBool("Jumping", false);
         }
-        //palautetaan hyppyjen määrä
+        //palautetaan hyppyjen mï¿½ï¿½rï¿½
         return jumpsLeft;
     }
 
@@ -273,7 +272,7 @@ public class Player : MonoBehaviour
         //aseen positio asetetaan verrattuna pelaajaan oikean tikun mukaan
         gun.position = new Vector2(transform.position.x + aimDir.normalized.x, transform.position.y + aimDir.normalized.y);
 
-        //aseen rotaatio asetetaan laskemalla pelaajan ja aseen kulman käyttäen tan
+        //aseen rotaatio asetetaan laskemalla pelaajan ja aseen kulman kï¿½yttï¿½en tan
         angle = Mathf.Atan2(gun.position.y - transform.position.y, gun.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
         gun.eulerAngles = new Vector3(0, 0, angle); //aseen rotaatio asetetaan
     }
@@ -288,7 +287,7 @@ public class Player : MonoBehaviour
         //asetetaan nykyinen ase edelliseksi
         previousWeapon = selected;
 
-        //jos valitun aseen numero menee pelaajan aseiden määrän yli asetetaan valittu ase takaisin ensimmäiseksi
+        //jos valitun aseen numero menee pelaajan aseiden mï¿½ï¿½rï¿½n yli asetetaan valittu ase takaisin ensimmï¿½iseksi
         if (selected >= transform.GetChild(2).childCount - 1)
             selected = 0;
         else
@@ -302,16 +301,20 @@ public class Player : MonoBehaviour
 
     void SelectGun()
     {
-        //katsotaan jokaisen lapsen läpi ja asetetaan sen mukaan nykyinen ase katsottuna selected numeroon
-        for(int i = 0; i < transform.GetChild(2).childCount; i++)
+        //katsotaan jokaisen lapsen lï¿½pi ja asetetaan sen mukaan nykyinen ase katsottuna selected numeroon
+        int i = 0;
+        Transform weaponH = transform.GetChild(2).transform;
+        foreach(Transform weapon in weaponH)
         {
             if (i == selected)
             {
-                gun.gameObject.SetActive(true);
-                gun = transform.GetChild(2).GetChild(selected);
+                weapon.gameObject.SetActive(true);
+                gun = weapon;
             }
             else
-                gun.gameObject.SetActive(false);
+                weapon.gameObject.SetActive(false);
+
+            i++;
         }
     }
 }

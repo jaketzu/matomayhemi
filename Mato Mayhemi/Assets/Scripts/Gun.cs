@@ -34,7 +34,7 @@ public class Gun : MonoBehaviour
                 lr.enabled = true;
 
                 RaycastHit2D hitRail = Physics2D.Raycast(muzzle.position, transform.up, 1000f);
-                StartCoroutine(DrawRope(hitRail.point, lr));
+                StartCoroutine(DrawRay(hitRail.point, lr));
 
                 if (hitRail.collider.CompareTag("Player"))
                 {
@@ -42,7 +42,7 @@ public class Gun : MonoBehaviour
                 }
                 else
                 {
-                    //ympäristö posahus
+                    //ympï¿½ristï¿½ posahus
                 }
             }
             else if (transform.name == "Audio Blaster")
@@ -50,25 +50,25 @@ public class Gun : MonoBehaviour
                 //katsotaan aseen suunta
                 Vector2 direction = transform.up;
 
-                //raycastataan laatikko aseen suusta eteenpäin tietyllä koolla ja talletetaan kaikki colliderit johon laatikko osuu
+                //raycastataan laatikko aseen suusta eteenpï¿½in tietyllï¿½ koolla ja talletetaan kaikki colliderit johon laatikko osuu
                 RaycastHit2D[] hitAB = Physics2D.BoxCastAll(muzzle.position, new Vector2(3, 3), transform.rotation.z, direction);
-                //mennään kaikkien laatikon osumien objektejien läpi
+                //mennï¿½ï¿½n kaikkien laatikon osumien objektejien lï¿½pi
                 for (int i = 0; i < hitAB.Length; i++)
                 {
-                    //jos objekti on pelaaja, lisätään pelaajalle voimaa aseen suuntaan
+                    //jos objekti on pelaaja, lisï¿½tï¿½ï¿½n pelaajalle voimaa aseen suuntaan
                     if (hitAB[i].collider.CompareTag("Player"))
                     {
                         hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
                     }
 
-                    //lisätään voimaa aseen vastakkaiseen suuntaan pelaajalle joka pitää asetta
+                    //lisï¿½tï¿½ï¿½n voimaa aseen vastakkaiseen suuntaan pelaajalle joka pitï¿½ï¿½ asetta
                     transform.parent.parent.GetComponent<Rigidbody2D>().AddForce(-direction * force, ForceMode2D.Impulse);
                 }
             }
         }
     }
     
-    private IEnumerator DrawRope(Vector2 hitPoint, LineRenderer lr)
+    private IEnumerator DrawRay(Vector2 hitPoint, LineRenderer lr)
     {
         Vector2 currentPos = new Vector2(muzzle.position.x, muzzle.position.y);
         lr.SetPosition(0, currentPos);
