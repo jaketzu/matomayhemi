@@ -8,7 +8,7 @@ public class Digging : MonoBehaviour
 {
     public Tilemap tilemap;
 
-    float add = 30;
+    public float add;
     void Start()
     {
         

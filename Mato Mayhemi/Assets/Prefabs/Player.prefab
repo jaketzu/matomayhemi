@@ -87,7 +87,6 @@ MonoBehaviour:
   grappleLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  selected: 0
 --- !u!114 &1273014656049165861
 MonoBehaviour:
   m_ObjectHideFlags: 0
