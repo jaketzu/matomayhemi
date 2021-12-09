@@ -92,8 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8105698534432907094}
   - component: {fileID: 3064028694462433908}
-  - component: {fileID: 797364401295254575}
   - component: {fileID: 3528165654364468755}
+  - component: {fileID: 797364401295254575}
+  - component: {fileID: 2983591213951411212}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -137,19 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &797364401295254575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7642731846572829049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2c09a258b23ea428bd643f2a6b8e0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shooter: 
 --- !u!61 &3528165654364468755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,3 +164,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.05, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &797364401295254575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7642731846572829049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2c09a258b23ea428bd643f2a6b8e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 33
+  force: 10
+  radius: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 72
+--- !u!114 &2983591213951411212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7642731846572829049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af778d0d7399d3458347c3ada3d4da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 377789948823678652}
   - component: {fileID: 2484517649701226794}
   - component: {fileID: 5043044018352068861}
+  - component: {fileID: -115580283573310762}
   m_Layer: 0
   m_Name: Holy Grenade
   m_TagString: Untagged
@@ -165,7 +166,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab6b7b66fe191849a53620c50e6156e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  force: 20
+  damage: 99
+  force: 12
   radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 72
   timer: 5
+--- !u!114 &-115580283573310762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348298402126079249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af778d0d7399d3458347c3ada3d4da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
