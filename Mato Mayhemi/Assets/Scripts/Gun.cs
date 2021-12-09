@@ -5,17 +5,17 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    [HideInInspector]public Transform muzzle;
+    public Transform muzzle;
 
     public int damage;
     public int force;
     public int shots;
 
     public float firerate;
-    [HideInInspector]public float nextTimeToFire = 0;
+    public float nextTimeToFire;
 
-    void Awake() 
+    void Start()
     {
-        muzzle = transform.GetChild(1);
+        nextTimeToFire = 0;
     }
 }

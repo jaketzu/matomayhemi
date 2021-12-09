@@ -20,19 +20,19 @@ public class Player : MonoBehaviour
     public float jumps;
     [SerializeField] private float jumpsLeft;
 
-    private Rigidbody2D rb;
-    private BoxCollider2D[] bc = new BoxCollider2D[2];
+    [SerializeField]private Rigidbody2D rb;
+    [SerializeField]private BoxCollider2D[] bc = new BoxCollider2D[2];
 
-    private Animator anim;
+    [SerializeField]private Animator anim;
 
-    private SpringJoint2D joint;
+    [SerializeField]private SpringJoint2D joint;
 
     [SerializeField] private LayerMask groundLayerMask;
 
     private Transform gun;
     private Gun gunScript;
 
-    private LineRenderer lr;
+    [SerializeField]private LineRenderer lr;
 
     private bool rope;
     public float ropeAdjust;
@@ -41,8 +41,7 @@ public class Player : MonoBehaviour
     private Vector2 grapplePoint;
     private float distance;
 
-
-    private Transform weaponHolder;
+    public Transform weaponHolder;
     private int previousWeapon;
     private int selected;
 
@@ -53,65 +52,26 @@ public class Player : MonoBehaviour
 
     private Vector2 aimDir;
 
-    void Awake()
-    {
-        //ohjainhommii
-        /*gc = new GamepadControls();
 
-        gc.Game.Move.performed += ctx => moveHor = ctx.ReadValue<float>();
-        gc.Game.Move.canceled += ctx => moveHor = 0;
-
-        gc.Game.AdjustRope.performed += ctx => moveVer = ctx.ReadValue<float>();
-        gc.Game.AdjustRope.canceled += ctx => moveVer = 0;
-
-        gc.Game.AimHor.performed += ctx => aimHor = ctx.ReadValue<float>();
-        gc.Game.AimVer.performed += ctx => aimVer = ctx.ReadValue<float>();
-
-        gc.Game.Shoot.performed += ctx => Shoot();
-
-        gc.Game.Jump.performed += ctx => Jump();
-
-        gc.Game.Rope.performed += ctx => Rope();
-
-        gc.Game.SwitchWeapon.performed += ctx => SwitchGun();*/
-
-        lr = GetComponent<LineRenderer>();
-
-        bc = GetComponents<BoxCollider2D>();
-        rb = GetComponent<Rigidbody2D>();
-
-        anim = GetComponent<Animator>();
-
-        joint = GetComponent<SpringJoint2D>();
-
-        weaponHolder = transform.GetChild(2);
-    }
+    private bool isShoot;
+    private bool isJump;
+    private bool isRope;
+    private bool isSwitch;
 
     public void OnMove(InputAction.CallbackContext ctx) => moveHor = ctx.ReadValue<float>();
+
     public void OnAdjustRope(InputAction.CallbackContext ctx) => moveVer = ctx.ReadValue<float>();
 
     public void OnAimHor(InputAction.CallbackContext ctx) => aimHor = ctx.ReadValue<float>();
     public void OnAimVer(InputAction.CallbackContext ctx) => aimVer = ctx.ReadValue<float>();
 
-    public void OnShoot(InputAction.CallbackContext ctx) => Shoot();
+    public void OnShoot(InputAction.CallbackContext ctx) => isShoot = ctx.action.triggered;
 
-    public void OnJump(InputAction.CallbackContext ctx) => Jump();
+    public void OnJump(InputAction.CallbackContext ctx) => isJump = ctx.action.triggered;
 
-    public void OnRope(InputAction.CallbackContext ctx) => Rope();
+    public void OnRope(InputAction.CallbackContext ctx) => isRope = ctx.action.triggered;
 
-    public void OnSwitch(InputAction.CallbackContext ctx) => SwitchGun();
-
-    //ohjainhommii
-    void OnEnable()
-    {
-        gc.Game.Enable();
-    }
-
-    //ohjainhommii
-    void OnDisable()
-    {
-        gc.Game.Disable();
-    }
+    public void OnSwitch(InputAction.CallbackContext ctx) => isSwitch = ctx.action.triggered;
 
     void Start()
     {
@@ -132,7 +92,8 @@ public class Player : MonoBehaviour
     {
         moveDir = new Vector2(moveHor, moveVer);
 
-        if(moveDir.magnitude != deadzone)
+        //jos on liikettä ja et ole ropessa
+        if (moveDir.magnitude > deadzone && !joint.enabled)
         {
             //t�m� on sit� varten ett� jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -152,40 +113,36 @@ public class Player : MonoBehaviour
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
+            anim.SetBool("Moving", true);
         }
-
-        //jos on liikett�
-        if (moveHor != 0)
-        {
-            //jos et ole ropessa
-            if (!joint.enabled)
-            {
-                if (moveDir.magnitude > deadzone)
-                {
-                    anim.SetBool("Moving", true);
-                }
-            }
-            //jos olet ropessa
-            else
-            {
-                RopeMove();
-                anim.SetBool("Moving", false);
-            }
-        }
+        //jos olet ropessa
         else
-            anim.SetBool("Moving", false);
-
-        //jos tunnistetaan yl�s tai alas liikett� kun ollaan ropessa
-        if (moveVer != 0)
         {
-            AdjustRope();
+            RopeMove();
+            anim.SetBool("Moving", false);
         }
+
+        if(rope && moveDir.magnitude > deadzone && moveVer != 0)
+            AdjustRope();
 
         aimDir = new Vector2(aimHor, aimVer);
 
         //katsoo onko tikut tarpeeksi kaukana keskelt�
         if (aimDir.magnitude > deadzone)
             Aim();
+
+
+        if(isShoot)
+            Shoot();
+
+        if(isJump)
+            Jump();
+
+        if(isRope)
+            Rope();
+        
+        if(isSwitch)
+            SwitchGun();
     }
 
     void LateUpdate()
@@ -200,21 +157,20 @@ public class Player : MonoBehaviour
         //katsotaan onko meill� hyppyj� j�ljell� ja emme ole ropessa
         if (CheckGround() != 0 && !joint.enabled)
         {
+            isJump = false;
             //lis�t��n voimaa rigidbodyyn
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
-
-            anim.SetBool("Jumping", true);
         }
     }
 
     public void Rope()
     {
+        isRope = false;
         //jos rope ei ole k�yt�ss�
         if (!rope)
         {
             rope = true;
-            lr.enabled = true;
 
             //disabloidaan pelaajan colliderit frameksi, jotta raycast ei osu omaan pelaajaan
             bc[0].enabled = false;
@@ -226,6 +182,8 @@ public class Player : MonoBehaviour
             {
                 //asetetaan grapplepoint raycastin osumaan kohtaan
                 grapplePoint = hit.point;
+
+                lr.enabled = true;
 
                 //enabloidaan pelaajan springjoint
                 joint.enabled = true;
@@ -259,9 +217,13 @@ public class Player : MonoBehaviour
 
     public void RopeMove()
     {
-        //jos olemme ropessa, emme k�ytet� transform.translate vain lis�t��n voimaa rigidbodyyn
-        Vector2 move = new Vector2(moveHor, 0) * force * Time.deltaTime;
-        rb.AddForce(move);
+        //jos olemme ropessa
+        if(rope)
+        {
+            //emme k�ytet� transform.translate vain lis�t��n voimaa rigidbodyyn
+            Vector2 move = new Vector2(moveHor, 0) * force * Time.deltaTime;
+            rb.AddForce(move);
+        }
     }
 
     public void AdjustRope()
@@ -294,6 +256,7 @@ public class Player : MonoBehaviour
 
         public void Shoot()
     {
+        isShoot = false;
         if (Time.time >= gunScript.nextTimeToFire)
         {
             gunScript.nextTimeToFire = Time.time + 1f / gunScript.firerate;
@@ -336,11 +299,11 @@ public class Player : MonoBehaviour
                     //jos objekti on pelaaja, lis�t��n pelaajalle voimaa aseen suuntaan
                     if (hitAB[i].collider.CompareTag("Player"))
                     {
-                        hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
+                        hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * gunScript.force, ForceMode2D.Impulse);
                     }
 
                     //lis�t��n voimaa aseen vastakkaiseen suuntaan pelaajalle joka pit�� asetta
-                    rb.AddForce(-direction * force, ForceMode2D.Impulse);
+                    rb.AddForce(-direction * gunScript.force, ForceMode2D.Impulse);
                 }
             }
         }
@@ -360,6 +323,7 @@ public class Player : MonoBehaviour
 
     public void SwitchGun()
     {
+        isSwitch = false;
         //asetetaan nykyinen ase edelliseksi
         previousWeapon = selected;
 

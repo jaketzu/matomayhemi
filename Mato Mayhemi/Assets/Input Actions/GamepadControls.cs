@@ -56,7 +56,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""id"": ""2ff5a478-51af-43eb-81f5-cf1b395a9cda"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Rope"",
@@ -64,7 +64,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""id"": ""76d150a6-ffc3-4812-9e68-daa7c2fc9942"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Switch Weapon"",
@@ -80,7 +80,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""id"": ""49df76e4-8285-4df6-a5ca-9604dcd53457"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Dig"",
@@ -88,7 +88,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""id"": ""a187109d-8b49-470d-ab58-f9d9758648c3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Jump"",
@@ -96,7 +96,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""id"": ""bb90fdaa-bb77-46c7-8c87-f1096f50a586"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -104,7 +104,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""bdcb5161-15d1-4149-824a-62f018a6d5fb"",
                     ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
@@ -115,7 +115,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""c4ae9377-6f99-449f-b6e1-1b584a93b1a9"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
@@ -126,7 +126,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""44509a79-fd61-401d-89d7-ed6b961756cf"",
                     ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
@@ -137,7 +137,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b3bbd69a-ee12-4bad-ac41-f1588002f074"",
                     ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rope"",
@@ -148,7 +148,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""13df955d-d1f1-476f-b834-ff9d5542df55"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rope"",
@@ -159,7 +159,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""38d676bc-e4fc-400a-a8e3-e65f83980432"",
                     ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Switch Weapon"",
@@ -170,7 +170,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""666f0a1d-cf71-4463-a66b-316e15cdf9f8"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Switch Weapon"",
@@ -181,7 +181,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a5d148a8-8693-4282-ba39-1b3f49e8e63f"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dig"",
@@ -192,7 +192,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""6898bf48-b238-42cf-a20e-a8c5806ebc74"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
@@ -203,7 +203,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""a0066ab1-cca2-4894-a2bf-1eb8945c3eef"",
                     ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
@@ -214,7 +214,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""6e98392c-ce8a-49f6-b4de-7aa64ac63055"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
@@ -423,7 +423,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""d7c7be70-31d0-43a5-9369-9f20eb97d0a4"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Lasso"",
@@ -434,7 +434,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""22137d7b-532b-485c-99e7-db2a2552b4f3"",
                     ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Lasso"",

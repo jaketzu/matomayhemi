@@ -35,13 +35,4 @@ public class GameManager : MonoBehaviour
         //++kill p1
         //killfeed
     }
-
-    /*public void Death() tarviiko??
-    {
-        //++death p1
-        //if(????)
-            //killfeed jos ei tappajaa
-    }*/
-
-
 }

@@ -127,7 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4348298402126079249, guid: c3c89656b24bd914ca054b3f063f43b8, type: 3}
+  muzzle: {fileID: 2233479382384129029}
   damage: 5
   force: 15
   shots: 1
   firerate: 1
+  nextTimeToFire: 0
