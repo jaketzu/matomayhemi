@@ -10,8 +10,7 @@ public class BulletScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            //takedamage player
-            //riko environment
+            collision.gameObject.GetComponent<Player>().TakeDamage(15);
             Destroy(gameObject);
         }
         

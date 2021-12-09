@@ -125,7 +125,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""44509a79-fd61-401d-89d7-ed6b961756cf"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",

@@ -74,20 +74,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29abfbe4cafebfe4cb462e271c76c8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   deadzone: 0.75
   speed: 7
-  force: 300
+  force: 700
   jumpVel: 5
   jumps: 2
   jumpsLeft: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  ropeAdjust: 10
+  ropeAdjust: 12
   grappleLayerMask:
     serializedVersion: 2
     m_Bits: 72
-  selected: 0
 --- !u!114 &1273014656049165861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,10 +115,10 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
-        m_MethodName: Move
-        m_Mode: 1
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -131,13 +131,13 @@ MonoBehaviour:
     m_ActionName: Game/Move[/DualShock4GamepadHID/leftStick/left,/XInputControllerWindows/leftStick/left,/DualShock4GamepadHID/leftStick/right,/XInputControllerWindows/leftStick/right,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnAdjustRope
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -147,10 +147,10 @@ MonoBehaviour:
     m_ActionName: Game/AdjustRope[/DualShock4GamepadHID/leftStick/down,/XInputControllerWindows/leftStick/down,/DualShock4GamepadHID/leftStick/up,/XInputControllerWindows/leftStick/up,/Keyboard/downArrow,/Keyboard/upArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AimingScript, Assembly-CSharp
-        m_MethodName: Aim
-        m_Mode: 1
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnAimHor
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -163,10 +163,10 @@ MonoBehaviour:
     m_ActionName: Game/AimHor[/DualShock4GamepadHID/rightStick/left,/XInputControllerWindows/rightStick/left,/DualShock4GamepadHID/rightStick/right,/XInputControllerWindows/rightStick/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AimingScript, Assembly-CSharp
-        m_MethodName: Aim
-        m_Mode: 1
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnAimVer
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -179,10 +179,10 @@ MonoBehaviour:
     m_ActionName: Game/AimVer[/DualShock4GamepadHID/rightStick/down,/XInputControllerWindows/rightStick/down,/DualShock4GamepadHID/rightStick/up,/XInputControllerWindows/rightStick/up]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MovementScript, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 1
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -194,11 +194,35 @@ MonoBehaviour:
     m_ActionId: 2ff5a478-51af-43eb-81f5-cf1b395a9cda
     m_ActionName: Game/Shoot[/DualShock4GamepadHID/rightShoulder,/XInputControllerWindows/rightShoulder,/DualShock4GamepadHID/rightTrigger,/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnRope
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 76d150a6-ffc3-4812-9e68-daa7c2fc9942
     m_ActionName: Game/Rope[/DualShock4GamepadHID/leftTrigger,/XInputControllerWindows/leftTrigger,/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSwitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6d1bd159-2850-4221-9313-a75c0de9476d
     m_ActionName: Game/Switch Weapon[/DualShock4GamepadHID/buttonNorth,/XInputControllerWindows/buttonNorth,/Keyboard/q]
   - m_PersistentCalls:
@@ -210,7 +234,19 @@ MonoBehaviour:
     m_ActionId: a187109d-8b49-470d-ab58-f9d9758648c3
     m_ActionName: Game/Dig[/DualShock4GamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5479848435277419851}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bb90fdaa-bb77-46c7-8c87-f1096f50a586
     m_ActionName: Game/Jump[/DualShock4GamepadHID/buttonSouth,/XInputControllerWindows/buttonSouth,/DualShock4GamepadHID/dpad/up,/XInputControllerWindows/dpad/up,/Keyboard/space]
   - m_PersistentCalls:
@@ -311,7 +347,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
-  m_DampingRatio: 0
+  m_DampingRatio: 1
   m_Frequency: 1
 --- !u!120 &4267909703474411855
 LineRenderer:
