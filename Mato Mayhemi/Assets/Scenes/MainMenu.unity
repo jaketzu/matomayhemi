@@ -1055,7 +1055,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2053510767}
         m_TargetAssemblyTypeName: MenuSceneSwitcher, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SceneSwitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

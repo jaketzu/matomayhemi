@@ -435,34 +435,23 @@
             "id": "708e58c5-719a-4484-b8bb-8f597a79c1f6",
             "actions": [
                 {
-                    "name": "Join",
+                    "name": "New action",
                     "type": "Button",
                     "id": "3fa80912-da3f-477c-8878-1cc8b8711fe0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "298bad98-6845-4e0d-9663-71561b9f8077",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Join",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "63aedfc1-726a-4d97-89b9-ba4793cc594a",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Join",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
