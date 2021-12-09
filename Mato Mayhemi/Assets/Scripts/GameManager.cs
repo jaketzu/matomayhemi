@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +24,10 @@ public class GameManager : MonoBehaviour
 
         if (timer <= 0)
             EndGame();*/
+
+        if(Keyboard.current.rKey.isPressed)
+            SceneManager.LoadScene(Random.Range(1, 3));
+
     }
 
     void EndGame()

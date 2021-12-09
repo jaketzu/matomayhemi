@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]private LineRenderer lr;
 
+    [SerializeField] private AudioSource audioSource;
+
     private bool rope;
     public float ropeAdjust;
 
@@ -248,6 +250,7 @@ public class Player : MonoBehaviour
         isShoot = false;
         if (Time.time >= gunScript.nextTimeToFire)
         {
+            audioSource.Play();
             gunScript.nextTimeToFire = Time.time + 1f / gunScript.firerate;
 
             if (gunScript.bulletPrefab != null)

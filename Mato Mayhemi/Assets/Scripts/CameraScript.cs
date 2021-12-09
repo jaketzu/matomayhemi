@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject[] objektit;
+    private GameObject[] players;
     public float maxZoom;
     public float minZoom;
 
@@ -13,30 +13,36 @@ public class CameraScript : MonoBehaviour
     float longestDistance;
 
     Vector3 cameraPosition;
-    // Update is called once per frame
+
+
     void Update()
     {
         CenterCamera();
         CameraZoom();
     }
 
+    void Awake() 
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+    }
+
 
     void CenterCamera(){
         //lasketaan pelaajien välinen keskikohta
         Vector3 sum = new Vector3(0, 0, 0);
-        for (int i = 0; i < objektit.Length; i++)
+        for (int i = 0; i < players.Length; i++)
         {
-            sum += objektit[i].transform.position; 
+            sum += players[i].transform.position; 
         }
-        cameraPosition = new Vector3(sum.x/objektit.Length, sum.y/objektit.Length,-10);
+        cameraPosition = new Vector3(sum.x/players.Length, sum.y/players.Length,-10);
         transform.position = cameraPosition;
-        float dist = Vector3.Distance(objektit[0].transform.position, objektit[1].transform.position);
+        float dist = Vector3.Distance(players[0].transform.position, players[1].transform.position);
     }
     void CameraZoom(){
-        distances = new float[objektit.Length];
-        for (int i = 0; i < objektit.Length; i++)
+        distances = new float[players.Length];
+        for (int i = 0; i < players.Length; i++)
         {
-            distances[i] = Vector2.Distance(transform.position, objektit[i].transform.position);
+            distances[i] = Vector2.Distance(transform.position, players[i].transform.position);
         }
         longestDistance = distances.Max();
 
