@@ -16,7 +16,8 @@ public class CameraScript : MonoBehaviour
 
 
     void Update()
-    {
+    {   
+        players = GameObject.FindGameObjectsWithTag("Player");
         CenterCamera();
         CameraZoom();
     }
