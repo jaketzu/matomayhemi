@@ -233,6 +233,7 @@ MonoBehaviour:
 =======
   weaponHolder: {fileID: 2454654506242076389}
 <<<<<<< HEAD
+<<<<<<< HEAD
   aimHor: 0
   aimVer: 0
   isShoot: 0
@@ -241,6 +242,8 @@ MonoBehaviour:
   isSwitch: 0
 >>>>>>> cc05bf9747474c0e5aed76620fd15446f46c577f
 =======
+=======
+>>>>>>> parent of cc05bf9 (vaikkajamitä)
 --- !u!114 &1273014656049165861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +414,9 @@ MonoBehaviour:
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> parent of cc05bf9 (vaikkajamitä)
+=======
 >>>>>>> parent of cc05bf9 (vaikkajamitä)
 --- !u!61 &9195309230609520466
 BoxCollider2D:
