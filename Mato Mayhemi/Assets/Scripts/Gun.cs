@@ -9,6 +9,8 @@ public class Gun : MonoBehaviour
 
     public int damage;
     public int force;
+
+    public float radius;
     public int shots;
 
     public float firerate;
