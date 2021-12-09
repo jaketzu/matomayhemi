@@ -86,7 +86,13 @@ public class Player : MonoBehaviour
         //jos on liikettä ja et ole ropessa
         if (moveDir.magnitude > deadzone && !joint.enabled)
         {
-            //t�m� on sit� varten ett� jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rihidbodyssa
+            /*RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right, transform.right, 0.5f, groundLayerMask);
+            if(hit.collider != null)
+            {
+
+            }*/
+
+            //t�m� on sit� varten ett� jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rigidbodyssa
             rb.velocity = new Vector2(0, rb.velocity.y);
 
             //liikesuunta ja nopeus asetetaan
@@ -259,14 +265,12 @@ public class Player : MonoBehaviour
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
                     bullet.GetComponent<GrenadeScript>().damage = gunScript.damage;
-                    bullet.GetComponent<GrenadeScript>().radius = gunScript.radius;
                     bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
                 }
                 else if(gun.name == "Missile Launcher")
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
                     bullet.GetComponent<MissileScript>().damage = gunScript.damage;
-                    bullet.GetComponent<MissileScript>().radius = gunScript.radius;
                     bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
                 }
                 else
@@ -275,7 +279,6 @@ public class Player : MonoBehaviour
                     {
                         GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
                         bullet.GetComponent<BulletScript>().damage = gunScript.damage;
-                        bullet.GetComponent<BulletScript>().radius = gunScript.radius;
                         bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
                     }
                 }
@@ -299,7 +302,6 @@ public class Player : MonoBehaviour
                         //ymp�rist� posahus
                     }
                 }
-
             }
             else if (gun.transform.name == "Audio Blaster")
             {
@@ -308,20 +310,23 @@ public class Player : MonoBehaviour
 
                 //raycastataan laatikko aseen suusta eteenp�in tietyll� koolla ja talletetaan kaikki colliderit johon laatikko osuu
                 RaycastHit2D[] hitAB = Physics2D.BoxCastAll(gunScript.muzzle.position, new Vector2(3, 3), gun.rotation.z, direction);
-                //menn��n kaikkien laatikon osumien objektejien l�pi
-                for (int i = 0; i < hitAB.Length; i++)
+                if(hitAB != null)
                 {
-                    if(hitAB != null)
+                    //menn��n kaikkien laatikon osumien objektien läpi
+                    for (int i = 0; i < hitAB.Length; i++)
                     {
-                        //jos objekti on pelaaja, lis�t��n pelaajalle voimaa aseen suuntaan
-                        if (hitAB[i].collider.CompareTag("Player"))
                         {
-                            hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * gunScript.force, ForceMode2D.Impulse);
+                            //jos objekti on pelaaja, lis�t��n pelaajalle voimaa aseen suuntaan
+                            if (hitAB[i].collider.CompareTag("Player"))
+                            {
+                                hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * gunScript.force, ForceMode2D.Impulse);
+                            }
                         }
-                    }
 
-                    //lis�t��n voimaa aseen vastakkaiseen suuntaan pelaajalle joka pit�� asetta
-                    rb.AddForce(-direction * gunScript.force, ForceMode2D.Impulse);
+                        //lis�t��n voimaa aseen vastakkaiseen suuntaan pelaajalle joka pit�� asetta
+                        rb.AddForce(-direction * gunScript.force, ForceMode2D.Impulse);
+                    }
+                
                 }
             }
         }

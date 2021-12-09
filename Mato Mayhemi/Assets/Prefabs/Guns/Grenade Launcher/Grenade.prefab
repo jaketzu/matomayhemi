@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 261862902663864297}
   - component: {fileID: 6676528294597948780}
-  - component: {fileID: 2701865352228485608}
   - component: {fileID: 6414228276574385002}
   - component: {fileID: 5559489207901797968}
   - component: {fileID: 8261824455798246674}
+  - component: {fileID: 2701865352228485608}
+  - component: {fileID: 2843484032661001687}
   m_Layer: 0
   m_Name: Grenade
   m_TagString: Untagged
@@ -86,22 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2701865352228485608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7134368903347011652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab6b7b66fe191849a53620c50e6156e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 33
-  force: 5
-  radius: 5
-  timer: 3
 --- !u!95 &6414228276574385002
 Animator:
   serializedVersion: 3
@@ -158,3 +143,35 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.065
+--- !u!114 &2701865352228485608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134368903347011652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab6b7b66fe191849a53620c50e6156e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 33
+  force: 7
+  radius: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  timer: 3
+--- !u!114 &2843484032661001687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134368903347011652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af778d0d7399d3458347c3ada3d4da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3

@@ -18,12 +18,7 @@ public class Digging : MonoBehaviour
         tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         print(collision.GetContact(0).point);
         Vector3 pos = collision.GetContact(0).point;
@@ -43,15 +38,31 @@ public class Digging : MonoBehaviour
                     }
                     
                 }
-                
-                
             }
         }
         Destroy(gameObject);
+    }*/
 
+    public void DestroyEnvironment()
+    {
+        Vector2 pos = transform.position;
         
-        
+        for(float x = pos.x - add; x < (pos.x + add); x++)
+        {
+            for(float y = pos.y - add; y < (pos.y + add); y++)
+            {
+                float dc = x * x;
+                float dr = y * y;
+                if (dc+dr <= radius * radius)
+                {
+                    Vector3Int tilepos = tilemap.WorldToCell(pos + new Vector2(x, y));
+
+                    if(tilemap.GetTile(tilepos) != null){
+                        tilemap.SetTile(tilepos,null);
+                    }
+                    
+                }
+            }
+        }
     }
-   
-    
 }
