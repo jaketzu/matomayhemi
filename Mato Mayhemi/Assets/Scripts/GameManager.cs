@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        timer = timerDefault;
+        //timer = timerDefault;
     }
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        /*timer -= Time.deltaTime;
 
         if (timer <= 0)
-            EndGame();
+            EndGame();*/
     }
 
     void EndGame()
@@ -35,13 +35,4 @@ public class GameManager : MonoBehaviour
         //++kill p1
         //killfeed
     }
-
-    /*public void Death() tarviiko??
-    {
-        //++death p1
-        //if(????)
-            //killfeed jos ei tappajaa
-    }*/
-
-
 }
