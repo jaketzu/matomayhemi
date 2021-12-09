@@ -81,7 +81,7 @@ MonoBehaviour:
   deadzone: 0.75
   speed: 7
   force: 700
-  jumpVel: 5
+  jumpVel: 6
   jumps: 2
   jumpsLeft: 0
   rb: {fileID: 1014676253322672032}
