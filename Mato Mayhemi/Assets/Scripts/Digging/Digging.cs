@@ -6,12 +6,16 @@ using UnityEngine.Tilemaps;
 
 public class Digging : MonoBehaviour
 {
-    public Tilemap tilemap;
+    Tilemap tilemap;
 
-    float add = 30;
+    public float radius;
+    float add;
+    
     void Start()
     {
-        
+        add = radius + 100;
+
+        tilemap = GameObject.Find("Tilemap").GetComponent<Tilemap>();
     }
 
     // Update is called once per frame
@@ -30,7 +34,7 @@ public class Digging : MonoBehaviour
             {
                 float dc = x * x;
                 float dr = y * y;
-                if (dc+dr <= 16*16)
+                if (dc+dr <= radius*radius)
                 {
                     Vector3Int tilepos = tilemap.WorldToCell(pos + new Vector3(x,y,0));
 
@@ -43,6 +47,7 @@ public class Digging : MonoBehaviour
                 
             }
         }
+        Destroy(gameObject);
 
         
         

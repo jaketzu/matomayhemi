@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 52390163}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14425,7 +14425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af778d0d7399d3458347c3ada3d4da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
+  tilemap: {fileID: 52390165}
+  radius: 1
 --- !u!1 &1999530191
 GameObject:
   m_ObjectHideFlags: 0
