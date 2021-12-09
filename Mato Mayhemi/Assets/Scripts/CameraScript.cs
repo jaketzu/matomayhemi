@@ -50,6 +50,10 @@ public class CameraScript : MonoBehaviour
             GetComponent<Camera>().orthographicSize = minZoom;
             return;
         }
+        if(maxZoom < longestDistance){
+            GetComponent<Camera>().orthographicSize = maxZoom;
+            return;
+        }
         GetComponent<Camera>().orthographicSize = longestDistance;
         
     }
