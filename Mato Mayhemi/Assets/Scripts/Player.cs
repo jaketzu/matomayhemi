@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
     [HideInInspector]public bool isJump;
     [HideInInspector]public bool isRope;
     [HideInInspector]public bool isSwitch;
-    GameObject camera;
 
     public int GetPlayerIndex()
     {
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {   
-        camera  = GameObject.Find("Main Camera");
+
         jumpsLeft = jumps;
 
         rope = false;
@@ -393,7 +392,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    void UpdatePlayerCount(){
-        camera.GetComponent<CameraScript>().UpdatePlayerCount();
-    }
 }
