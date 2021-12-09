@@ -14310,7 +14310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1807884916
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14425,7 +14425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af778d0d7399d3458347c3ada3d4da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 52390165}
   radius: 1
 --- !u!1 &1999530191
 GameObject:

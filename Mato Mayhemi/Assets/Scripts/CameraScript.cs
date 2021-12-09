@@ -37,7 +37,7 @@ public class CameraScript : MonoBehaviour
         }
         cameraPosition = new Vector3(sum.x/players.Length, sum.y/players.Length,-10);
         transform.position = cameraPosition;
-        float dist = Vector3.Distance(players[0].transform.position, players[1].transform.position);
+       
     }
     void CameraZoom(){
         distances = new float[players.Length];
