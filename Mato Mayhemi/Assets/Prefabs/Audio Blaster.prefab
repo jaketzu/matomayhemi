@@ -49,7 +49,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   muzzle: {fileID: 8413834981860779923}
   damage: 0
-  force: 20
+  force: 50
   shots: 1
   firerate: 1
   nextTimeToFire: 0

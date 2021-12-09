@@ -448,34 +448,23 @@ public class @GamepadControls : IInputActionCollection, IDisposable
             ""id"": ""708e58c5-719a-4484-b8bb-8f597a79c1f6"",
             ""actions"": [
                 {
-                    ""name"": ""Join"",
+                    ""name"": ""New action"",
                     ""type"": ""Button"",
                     ""id"": ""3fa80912-da3f-477c-8878-1cc8b8711fe0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""298bad98-6845-4e0d-9663-71561b9f8077"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Join"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""63aedfc1-726a-4d97-89b9-ba4793cc594a"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Join"",
+                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -498,7 +487,7 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Join = m_Menu.FindAction("Join", throwIfNotFound: true);
+        m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -653,12 +642,12 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
-    private readonly InputAction m_Menu_Join;
+    private readonly InputAction m_Menu_Newaction;
     public struct MenuActions
     {
         private @GamepadControls m_Wrapper;
         public MenuActions(@GamepadControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Join => m_Wrapper.m_Menu_Join;
+        public InputAction @Newaction => m_Wrapper.m_Menu_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -668,16 +657,16 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MenuActionsCallbackInterface != null)
             {
-                @Join.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
-                @Join.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
-                @Join.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnJoin;
+                @Newaction.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNewaction;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Join.started += instance.OnJoin;
-                @Join.performed += instance.OnJoin;
-                @Join.canceled += instance.OnJoin;
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
             }
         }
     }
@@ -697,6 +686,6 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     }
     public interface IMenuActions
     {
-        void OnJoin(InputAction.CallbackContext context);
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

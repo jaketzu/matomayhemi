@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    GamepadControls gc;
 
-    [SerializeField]private int playerIndex = 0;
     public int health;
 
-    [HideInInspector]public float moveHor;
-    [HideInInspector]public float moveVer;
+    private float moveHor;
+    private float moveVer;
     private Vector2 moveDir;
     public float deadzone;
     public float speed;
@@ -45,22 +45,33 @@ public class Player : MonoBehaviour
     private int previousWeapon;
     private int selected;
 
-    [HideInInspector]public float aimHor;
-    [HideInInspector]public float aimVer;
+    private float aimHor;
+    private float aimVer;
 
     private float angle;
 
     private Vector2 aimDir;
 
-    [HideInInspector]public bool isShoot;
-    [HideInInspector]public bool isJump;
-    [HideInInspector]public bool isRope;
-    [HideInInspector]public bool isSwitch;
 
-    public int GetPlayerIndex()
-    {
-        return playerIndex;
-    }
+    private bool isShoot;
+    private bool isJump;
+    private bool isRope;
+    private bool isSwitch;
+
+    public void OnMove(InputAction.CallbackContext ctx) => moveHor = ctx.ReadValue<float>();
+
+    public void OnAdjustRope(InputAction.CallbackContext ctx) => moveVer = ctx.ReadValue<float>();
+
+    public void OnAimHor(InputAction.CallbackContext ctx) => aimHor = ctx.ReadValue<float>();
+    public void OnAimVer(InputAction.CallbackContext ctx) => aimVer = ctx.ReadValue<float>();
+
+    public void OnShoot(InputAction.CallbackContext ctx) => isShoot = ctx.action.triggered;
+
+    public void OnJump(InputAction.CallbackContext ctx) => isJump = ctx.action.triggered;
+
+    public void OnRope(InputAction.CallbackContext ctx) => isRope = ctx.action.triggered;
+
+    public void OnSwitch(InputAction.CallbackContext ctx) => isSwitch = ctx.action.triggered;
 
     void Start()
     {
@@ -252,29 +263,10 @@ public class Player : MonoBehaviour
 
             if (gunScript.bulletPrefab != null)
             {
-                if(gun.name == "Grenade Launcher" || gun.name == "HeldHG")
+                for (int i = 0; i < gunScript.shots; i++)
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
-                    bullet.GetComponent<GrenadeScript>().damage = gunScript.damage;
-                    bullet.GetComponent<GrenadeScript>().radius = gunScript.radius;
                     bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
-                }
-                else if(gun.name == "Missile Launcher")
-                {
-                    GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
-                    bullet.GetComponent<MissileScript>().damage = gunScript.damage;
-                    bullet.GetComponent<MissileScript>().radius = gunScript.radius;
-                    bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
-                }
-                else
-                {
-                    for (int i = 0; i < gunScript.shots; i++)
-                    {
-                        GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
-                        bullet.GetComponent<BulletScript>().damage = gunScript.damage;
-                        bullet.GetComponent<BulletScript>().radius = gunScript.radius;
-                        bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
-                    }
                 }
             }
             else if (gun.transform.name == "Railgun")
@@ -285,18 +277,14 @@ public class Player : MonoBehaviour
                 RaycastHit2D hitRail = Physics2D.Raycast(gunScript.muzzle.position, gun.transform.up, 1000f);
                 StartCoroutine(DrawRay(hitRail.point, lr));
 
-                if(hitRail.collider != null)
+                if (hitRail.collider.CompareTag("Player"))
                 {
-                    if (hitRail.collider.CompareTag("Player"))
-                    {
-                        hitRail.collider.GetComponent<Player>().TakeDamage(gunScript.damage);
-                    }
-                    else if(hitRail.collider.CompareTag("Ground"))
-                    {
-                        //ymp�rist� posahus
-                    }
+                    hitRail.collider.GetComponent<Player>().TakeDamage(gunScript.damage);
                 }
-
+                else if(hitRail.collider.CompareTag("Ground"))
+                {
+                    //ymp�rist� posahus
+                }
             }
             else if (gun.transform.name == "Audio Blaster")
             {
@@ -308,13 +296,10 @@ public class Player : MonoBehaviour
                 //menn��n kaikkien laatikon osumien objektejien l�pi
                 for (int i = 0; i < hitAB.Length; i++)
                 {
-                    if(hitAB != null)
+                    //jos objekti on pelaaja, lis�t��n pelaajalle voimaa aseen suuntaan
+                    if (hitAB[i].collider.CompareTag("Player"))
                     {
-                        //jos objekti on pelaaja, lis�t��n pelaajalle voimaa aseen suuntaan
-                        if (hitAB[i].collider.CompareTag("Player"))
-                        {
-                            hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * gunScript.force, ForceMode2D.Impulse);
-                        }
+                        hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * gunScript.force, ForceMode2D.Impulse);
                     }
 
                     //lis�t��n voimaa aseen vastakkaiseen suuntaan pelaajalle joka pit�� asetta
@@ -376,10 +361,5 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 }

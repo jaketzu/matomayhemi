@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public int damage;
-    public float radius;
+    public string shooter;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+            collision.gameObject.GetComponent<Player>().TakeDamage(15);
             Destroy(gameObject);
         }
         
         if(collision.gameObject.CompareTag("Ground"))
         {
-            //circlecast
             //riko environment
             Destroy(gameObject);
         }
