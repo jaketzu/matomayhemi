@@ -7,6 +7,6 @@ using UnityEngine.SceneManagement;
 public class MenuSceneSwitcher : MonoBehaviour
 {   
     public void SceneSwitch(){
-        SceneManager.LoadScene("CharecterSelect");
+        SceneManager.LoadScene("SampleScene");
     }
 }
