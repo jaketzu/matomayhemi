@@ -83,46 +83,10 @@ public class Player : MonoBehaviour
         SwitchGun();
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, rayDir);
-    }
-
     void Update()
     {
-        moveDir = new Vector2(moveHor, moveVer);
-
-        //jos on liikettä ja et ole ropessa
-        if (moveDir.magnitude > deadzone && !joint.enabled)
-        {
-            //t�m� on sit� varten ett� jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rigidbodyssa
-            rb.velocity = new Vector2(0, rb.velocity.y);
-
-            //liikesuunta ja nopeus asetetaan
-            Vector2 move = new Vector2(moveHor, 0) * speed * Time.deltaTime;
-            //siirret��n pelaajaa
-            transform.Translate(move, Space.World); //hullu
-
-            //animaatiota
-            if (moveHor < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-
-            if (moveHor > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            anim.SetBool("Moving", true);
-        }
-        //jos olet ropessa
-        else
-        {
-            RopeMove();
-            anim.SetBool("Moving", false);
-        }
-
+        Move();
+        
         if(rope && moveDir.magnitude > deadzone && moveVer != 0)
             AdjustRope();
 
@@ -148,8 +112,72 @@ public class Player : MonoBehaviour
     void LateUpdate()
     {
         //jos rope on k�yt�ss�, piirret��n rope
-        if (rope)
+        if(rope)
             DrawRope();
+    }
+
+    /*void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, new Vector2(moveHor * 1.5f, 0));
+    }*/
+
+    void Move()
+    {
+        moveDir = new Vector2(moveHor, moveVer);
+
+        //jos on liikettä ja et ole ropessa
+        if (moveDir.magnitude > deadzone && !joint.enabled)
+        {
+            //t�m� on sit� varten ett� jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rigidbodyssa
+            rb.velocity = new Vector2(0, rb.velocity.y);
+
+            /*rayDir = new Vector2(moveHor, 0);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDir, 1.5f);
+            if(hit.collider.CompareTag("Ground"))
+            {
+                if(moveDir.x < 0.5f)
+                {
+                    Vector2 move = new Vector2(0, 0) * speed * Time.deltaTime;
+                    transform.Translate(move, Space.World); //hullu
+                }
+                else if(moveDir.x > 0.5f)
+                {
+                    Vector2 move = new Vector2(0, 0) * speed * Time.deltaTime;
+                    transform.Translate(move, Space.World); //hullu
+                }
+            }
+            else
+            {
+                Vector2 move = new Vector2(moveHor, 0) * speed * Time.deltaTime;
+                transform.Translate(move, Space.World); //hullu
+            }*/
+
+            //liikesuunta ja nopeus asetetaan
+            Vector2 move = new Vector2(moveHor, 0) * speed * Time.deltaTime;
+        
+            //siirret��n pelaajaa
+            transform.Translate(move, Space.World); //hullu
+            //rb.velocity = new Vector2(move.x, rb.velocity.y);
+
+            //animaatiota
+            if (moveHor < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+
+            if (moveHor > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            anim.SetBool("Moving", true);
+        }
+        //jos olet ropessa
+        else
+        {
+            RopeMove();
+            anim.SetBool("Moving", false);
+        }
     }
 
     public void Jump()
@@ -325,7 +353,7 @@ public class Player : MonoBehaviour
                     {
                         {
                             //jos objekti on pelaaja, lis�t��n pelaajalle voimaa aseen suuntaan
-                            if (hitAB[i].collider.CompareTag("Player"))
+                            if (hitAB[i].collider.CompareTag("Player") || hitAB[i].collider.CompareTag("Bullet"))
                             {
                                 hitAB[i].collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * gunScript.force, ForceMode2D.Impulse);
                             }
@@ -352,7 +380,7 @@ public class Player : MonoBehaviour
         lr.SetPosition(0, currentPos);
         lr.SetPosition(1, hitPoint);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         lr.enabled = false;
 
