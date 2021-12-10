@@ -170,14 +170,6 @@ MonoBehaviour:
     m_ActionId: 6d1bd159-2850-4221-9313-a75c0de9476d
     m_ActionName: Game/Switch Weapon[/DualShock4GamepadHID/buttonNorth,/XInputControllerWindows/buttonNorth,/Keyboard/q]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 49df76e4-8285-4df6-a5ca-9604dcd53457
-    m_ActionName: Game/Lasso[/DualShock4GamepadHID/buttonWest,/XInputControllerWindows/buttonWest,/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a187109d-8b49-470d-ab58-f9d9758648c3
-    m_ActionName: Game/Dig[/DualShock4GamepadHID/buttonEast,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3688886707401626189}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
@@ -199,7 +191,7 @@ MonoBehaviour:
     m_ActionName: Menu/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Game
+  m_DefaultActionMap: 6287a619-d291-4ce0-83c0-40166940bd2b
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &3688886707401626189

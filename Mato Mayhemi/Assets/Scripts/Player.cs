@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField]private int playerIndex = 0;
     public int health;
 
@@ -61,6 +60,8 @@ public class Player : MonoBehaviour
     [HideInInspector]public bool isRope;
     [HideInInspector]public bool isSwitch;
 
+    private Vector2 rayDir;
+
     public int GetPlayerIndex()
     {
         return playerIndex;
@@ -82,6 +83,12 @@ public class Player : MonoBehaviour
         SwitchGun();
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, rayDir);
+    }
+
     void Update()
     {
         moveDir = new Vector2(moveHor, moveVer);
@@ -89,12 +96,6 @@ public class Player : MonoBehaviour
         //jos on liikettä ja et ole ropessa
         if (moveDir.magnitude > deadzone && !joint.enabled)
         {
-            /*RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.right, transform.right, 0.5f, groundLayerMask);
-            if(hit.collider != null)
-            {
-
-            }*/
-
             //t�m� on sit� varten ett� jos tulee ropesta transform.translate ei mene sekasin koska on voimaa rigidbodyssa
             rb.velocity = new Vector2(0, rb.velocity.y);
 
@@ -130,7 +131,6 @@ public class Player : MonoBehaviour
         //katsoo onko tikut tarpeeksi kaukana keskelt�
         if (aimDir.magnitude > deadzone)
             Aim();
-
 
         if(isShoot)
             Shoot();
@@ -270,7 +270,7 @@ public class Player : MonoBehaviour
                 GameObject flame = Instantiate(explosion, gunScript.muzzle.position, Quaternion.identity);
                 flame.transform.parent = gunScript.muzzle;
 
-                if(gun.name == "Grenade Launcher(Clone)" || gun.name == "HeldHG")
+                if(gun.name == "Grenade Launcher(Clone)" || gun.name == "HeldHG(Clone)")
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
                     bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);

@@ -27,12 +27,12 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""AdjustRope"",
-                    ""type"": ""Value"",
-                    ""id"": ""4156b27c-ead9-440c-9b9d-d85b680f09b9"",
-                    ""expectedControlType"": ""Axis"",
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""bb90fdaa-bb77-46c7-8c87-f1096f50a586"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""AimHor"",
@@ -67,94 +67,23 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=2)""
                 },
                 {
+                    ""name"": ""AdjustRope"",
+                    ""type"": ""Value"",
+                    ""id"": ""4156b27c-ead9-440c-9b9d-d85b680f09b9"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Switch Weapon"",
                     ""type"": ""Button"",
                     ""id"": ""6d1bd159-2850-4221-9313-a75c0de9476d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Lasso"",
-                    ""type"": ""Button"",
-                    ""id"": ""49df76e4-8285-4df6-a5ca-9604dcd53457"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Dig"",
-                    ""type"": ""Button"",
-                    ""id"": ""a187109d-8b49-470d-ab58-f9d9758648c3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""bb90fdaa-bb77-46c7-8c87-f1096f50a586"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""bdcb5161-15d1-4149-824a-62f018a6d5fb"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c4ae9377-6f99-449f-b6e1-1b584a93b1a9"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""44509a79-fd61-401d-89d7-ed6b961756cf"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3bbd69a-ee12-4bad-ac41-f1588002f074"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""13df955d-d1f1-476f-b834-ff9d5542df55"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""38d676bc-e4fc-400a-a8e3-e65f83980432"",
@@ -174,50 +103,6 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Switch Weapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a5d148a8-8693-4282-ba39-1b3f49e8e63f"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dig"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6898bf48-b238-42cf-a20e-a8c5806ebc74"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a0066ab1-cca2-4894-a2bf-1eb8945c3eef"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6e98392c-ce8a-49f6-b4de-7aa64ac63055"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -247,6 +132,39 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""name"": ""positive"",
                     ""id"": ""a8ad6732-9103-4fb9-a6e1-f45c526a9f44"",
                     ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""bb78fa0d-cfc2-43b4-84e9-66c9860df865"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""908bc9bc-213f-487b-a093-87ba27993666"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4773653a-5dac-45ce-9a00-d91743c8464b"",
+                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -286,6 +204,149 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""e03995d3-60fd-44e6-bc31-f98f80708fef"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""853d12fb-e7d0-45a8-b30d-ba2297ca4ccc"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""694c1a94-0035-4dae-afe0-e6464153757f"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""dcbbc5c2-90dc-40f0-af7d-58db268a71a4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2e091140-b3b4-4b7d-a661-f06075ac4b50"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1a00c5ac-0d19-457b-ab3c-eb8e7c0cce8f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""61810cf0-e74f-40c7-a94a-4acd6b2e24b8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1b429daa-81b9-49c9-95b0-68fd4dae51b7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8d12c08f-bca5-4b7d-8b5d-3dc808965aa9"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AdjustRope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6898bf48-b238-42cf-a20e-a8c5806ebc74"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0066ab1-cca2-4894-a2bf-1eb8945c3eef"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0348a99-eb62-4212-8840-67284597a1b5"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e98392c-ce8a-49f6-b4de-7aa64ac63055"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""1D Axis"",
@@ -420,90 +481,57 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""e03995d3-60fd-44e6-bc31-f98f80708fef"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AdjustRope"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""853d12fb-e7d0-45a8-b30d-ba2297ca4ccc"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AdjustRope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""694c1a94-0035-4dae-afe0-e6464153757f"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AdjustRope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""61810cf0-e74f-40c7-a94a-4acd6b2e24b8"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AdjustRope"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""1b429daa-81b9-49c9-95b0-68fd4dae51b7"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AdjustRope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""8d12c08f-bca5-4b7d-8b5d-3dc808965aa9"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AdjustRope"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""d7c7be70-31d0-43a5-9369-9f20eb97d0a4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""bdcb5161-15d1-4149-824a-62f018a6d5fb"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Lasso"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""22137d7b-532b-485c-99e7-db2a2552b4f3"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""c4ae9377-6f99-449f-b6e1-1b584a93b1a9"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Lasso"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44509a79-fd61-401d-89d7-ed6b961756cf"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3bbd69a-ee12-4bad-ac41-f1588002f074"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rope"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13df955d-d1f1-476f-b834-ff9d5542df55"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rope"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -553,15 +581,13 @@ public class @GamepadControls : IInputActionCollection, IDisposable
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
-        m_Game_AdjustRope = m_Game.FindAction("AdjustRope", throwIfNotFound: true);
+        m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         m_Game_AimHor = m_Game.FindAction("AimHor", throwIfNotFound: true);
         m_Game_AimVer = m_Game.FindAction("AimVer", throwIfNotFound: true);
         m_Game_Shoot = m_Game.FindAction("Shoot", throwIfNotFound: true);
         m_Game_Rope = m_Game.FindAction("Rope", throwIfNotFound: true);
+        m_Game_AdjustRope = m_Game.FindAction("AdjustRope", throwIfNotFound: true);
         m_Game_SwitchWeapon = m_Game.FindAction("Switch Weapon", throwIfNotFound: true);
-        m_Game_Lasso = m_Game.FindAction("Lasso", throwIfNotFound: true);
-        m_Game_Dig = m_Game.FindAction("Dig", throwIfNotFound: true);
-        m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Join = m_Menu.FindAction("Join", throwIfNotFound: true);
@@ -615,29 +641,25 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Game;
     private IGameActions m_GameActionsCallbackInterface;
     private readonly InputAction m_Game_Move;
-    private readonly InputAction m_Game_AdjustRope;
+    private readonly InputAction m_Game_Jump;
     private readonly InputAction m_Game_AimHor;
     private readonly InputAction m_Game_AimVer;
     private readonly InputAction m_Game_Shoot;
     private readonly InputAction m_Game_Rope;
+    private readonly InputAction m_Game_AdjustRope;
     private readonly InputAction m_Game_SwitchWeapon;
-    private readonly InputAction m_Game_Lasso;
-    private readonly InputAction m_Game_Dig;
-    private readonly InputAction m_Game_Jump;
     public struct GameActions
     {
         private @GamepadControls m_Wrapper;
         public GameActions(@GamepadControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Game_Move;
-        public InputAction @AdjustRope => m_Wrapper.m_Game_AdjustRope;
+        public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputAction @AimHor => m_Wrapper.m_Game_AimHor;
         public InputAction @AimVer => m_Wrapper.m_Game_AimVer;
         public InputAction @Shoot => m_Wrapper.m_Game_Shoot;
         public InputAction @Rope => m_Wrapper.m_Game_Rope;
+        public InputAction @AdjustRope => m_Wrapper.m_Game_AdjustRope;
         public InputAction @SwitchWeapon => m_Wrapper.m_Game_SwitchWeapon;
-        public InputAction @Lasso => m_Wrapper.m_Game_Lasso;
-        public InputAction @Dig => m_Wrapper.m_Game_Dig;
-        public InputAction @Jump => m_Wrapper.m_Game_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -650,9 +672,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnMove;
-                @AdjustRope.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
-                @AdjustRope.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
-                @AdjustRope.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
+                @Jump.started -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
                 @AimHor.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAimHor;
                 @AimHor.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAimHor;
                 @AimHor.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAimHor;
@@ -665,18 +687,12 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Rope.started -= m_Wrapper.m_GameActionsCallbackInterface.OnRope;
                 @Rope.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnRope;
                 @Rope.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnRope;
+                @AdjustRope.started -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
+                @AdjustRope.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
+                @AdjustRope.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnAdjustRope;
                 @SwitchWeapon.started -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
                 @SwitchWeapon.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
                 @SwitchWeapon.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnSwitchWeapon;
-                @Lasso.started -= m_Wrapper.m_GameActionsCallbackInterface.OnLasso;
-                @Lasso.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnLasso;
-                @Lasso.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnLasso;
-                @Dig.started -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
-                @Dig.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
-                @Dig.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnDig;
-                @Jump.started -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_GameActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_GameActionsCallbackInterface = instance;
             if (instance != null)
@@ -684,9 +700,9 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @AdjustRope.started += instance.OnAdjustRope;
-                @AdjustRope.performed += instance.OnAdjustRope;
-                @AdjustRope.canceled += instance.OnAdjustRope;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
                 @AimHor.started += instance.OnAimHor;
                 @AimHor.performed += instance.OnAimHor;
                 @AimHor.canceled += instance.OnAimHor;
@@ -699,18 +715,12 @@ public class @GamepadControls : IInputActionCollection, IDisposable
                 @Rope.started += instance.OnRope;
                 @Rope.performed += instance.OnRope;
                 @Rope.canceled += instance.OnRope;
+                @AdjustRope.started += instance.OnAdjustRope;
+                @AdjustRope.performed += instance.OnAdjustRope;
+                @AdjustRope.canceled += instance.OnAdjustRope;
                 @SwitchWeapon.started += instance.OnSwitchWeapon;
                 @SwitchWeapon.performed += instance.OnSwitchWeapon;
                 @SwitchWeapon.canceled += instance.OnSwitchWeapon;
-                @Lasso.started += instance.OnLasso;
-                @Lasso.performed += instance.OnLasso;
-                @Lasso.canceled += instance.OnLasso;
-                @Dig.started += instance.OnDig;
-                @Dig.performed += instance.OnDig;
-                @Dig.canceled += instance.OnDig;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -751,15 +761,13 @@ public class @GamepadControls : IInputActionCollection, IDisposable
     public interface IGameActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnAdjustRope(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnAimHor(InputAction.CallbackContext context);
         void OnAimVer(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnRope(InputAction.CallbackContext context);
+        void OnAdjustRope(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
-        void OnLasso(InputAction.CallbackContext context);
-        void OnDig(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

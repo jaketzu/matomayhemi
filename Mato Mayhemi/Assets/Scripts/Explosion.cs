@@ -9,6 +9,8 @@ public class Explosion : MonoBehaviour
 
     void Start()
     {
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+
         if(audioSource != null)
             audioSource.Play();
     }
