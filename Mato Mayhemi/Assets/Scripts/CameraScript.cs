@@ -5,26 +5,37 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    private Camera cam;
+    Vector3 cameraPosition;
+
     private GameObject[] players;
+
+
     public float maxZoom;
     public float minZoom;
 
     float[] distances;
     float longestDistance;
 
-    Vector3 cameraPosition;
-
+    void Awake() 
+    {
+        cam = GetComponent<Camera>();
+    }
 
     void Update()
     {   
         UpdatePlayerCount();
-        CenterCamera();
-        CameraZoom();
-    }
-
-    void Awake() 
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        
+        if(players.Length != 0)
+        {
+            CenterCamera();
+            CameraZoom();
+        }
+        else
+        {
+            cam.orthographicSize = 15;
+            transform.position = new Vector3(0, 0, -10);
+        }
     }
 
 
@@ -47,14 +58,14 @@ public class CameraScript : MonoBehaviour
         longestDistance = distances.Max();
 
         if(minZoom > longestDistance){
-            GetComponent<Camera>().orthographicSize = minZoom;
+            cam.orthographicSize = minZoom;
             return;
         }
         if(maxZoom < longestDistance){
-            GetComponent<Camera>().orthographicSize = maxZoom;
+            cam.orthographicSize = maxZoom;
             return;
         }
-        GetComponent<Camera>().orthographicSize = longestDistance;
+        cam.orthographicSize = longestDistance;
         
     }
     public void UpdatePlayerCount(){

@@ -9,8 +9,11 @@ public class MissileScript : MonoBehaviour
     public float radius;
     public LayerMask layerMask;
 
+    public AudioSource audioSource;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
+        audioSource.Play();
         if(collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Player>().TakeDamage(damage);

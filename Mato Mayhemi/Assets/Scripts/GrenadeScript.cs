@@ -8,6 +8,7 @@ public class GrenadeScript : MonoBehaviour
     public int force;
     public float radius;
     public LayerMask layerMask;
+    public AudioSource audioSource;
 
     public float timer;
 
@@ -17,6 +18,7 @@ public class GrenadeScript : MonoBehaviour
 
         if(timer <= 0)
         {
+            audioSource.Play();
             RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, radius, transform.right, 0, layerMask);
             if(hit != null)
             {

@@ -156,6 +156,9 @@ public class Player : MonoBehaviour
         if (CheckGround() != 0 && !joint.enabled)
         {
             isJump = false;
+
+            audioSource.Play();
+
             //lis�t��n voimaa rigidbodyyn
             rb.velocity = Vector2.up * jumpVel;
             jumpsLeft--;
@@ -252,26 +255,24 @@ public class Player : MonoBehaviour
         gun.eulerAngles = new Vector3(0, 0, angle); //aseen rotaatio asetetaan
     }
 
-        public void Shoot()
+    public void Shoot()
     {
         isShoot = false;
         if (Time.time >= gunScript.nextTimeToFire)
         {
-            audioSource.Play();
+            gunScript.audioSource.Play();
             gunScript.nextTimeToFire = Time.time + 1f / gunScript.firerate;
 
             if (gunScript.bulletPrefab != null)
             {
-                if(gun.name == "Grenade Launcher" || gun.name == "HeldHG")
+                if(gun.name == "Grenade Launcher(Clone)" || gun.name == "HeldHG")
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
-                    bullet.GetComponent<GrenadeScript>().damage = gunScript.damage;
                     bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
                 }
-                else if(gun.name == "Missile Launcher")
+                else if(gun.name == "Missile Launcher(Clone)")
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
-                    bullet.GetComponent<MissileScript>().damage = gunScript.damage;
                     bullet.GetComponent<Rigidbody2D>().AddForce(gun.transform.up * gunScript.force, ForceMode2D.Impulse);
                 }
                 else
@@ -284,7 +285,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            else if (gun.transform.name == "Railgun")
+            else if (gun.transform.name == "Railgun(Clone)")
             {
                 LineRenderer lr = gun.transform.GetChild(1).GetComponent<LineRenderer>();
                 lr.enabled = true;
@@ -304,7 +305,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            else if (gun.transform.name == "Audio Blaster")
+            else if (gun.transform.name == "Audio Blaster(Clone)")
             {
                 //katsotaan aseen suunta
                 Vector2 direction = gun.transform.up;
@@ -388,6 +389,8 @@ public class Player : MonoBehaviour
 
         if(health <= 0)
         {
+            GameObject.Find("GameManager").GetComponent<GameManager>().PlayerDead();
+            print(GameObject.Find("GameManager"));
             Destroy(gameObject);
         }
     }

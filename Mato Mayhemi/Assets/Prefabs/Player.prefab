@@ -80,7 +80,7 @@ MonoBehaviour:
   moveVer: 0
   deadzone: 0.75
   speed: 7
-  force: 700
+  force: 1000
   jumpVel: 6
   jumps: 2
   jumpsLeft: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     m_Bits: 64
   lr: {fileID: 4267909703474411855}
   audioSource: {fileID: 8573293418156937603}
-  ropeAdjust: 12
+  ropeAdjust: 15
   grappleLayerMask:
     serializedVersion: 2
     m_Bits: 72
@@ -305,7 +305,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8475b498e74b21c44b0e0bb1e8ca90dc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 54767dd4788824d419a901dd151b3550, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

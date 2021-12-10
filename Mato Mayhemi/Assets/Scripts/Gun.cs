@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     public int force;
     public int shots;
 
+    public AudioSource audioSource;
+
     public float firerate;
     public float nextTimeToFire;
 
