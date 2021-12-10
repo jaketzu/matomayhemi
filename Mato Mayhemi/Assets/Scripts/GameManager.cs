@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         if(Keyboard.current.rKey.isPressed)
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCount - 1));
+            SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
         }
 
 

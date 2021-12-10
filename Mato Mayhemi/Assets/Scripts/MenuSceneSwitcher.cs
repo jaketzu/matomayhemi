@@ -10,7 +10,7 @@ public class MenuSceneSwitcher : MonoBehaviour
     public GameObject selectionObject;
     public GameObject helpPanel;
     public void SceneSwitch(){
-        SceneManager.LoadScene("Digging");
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
     }
 
     public void showHelp(){
