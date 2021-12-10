@@ -48,10 +48,18 @@ public class GameManager : MonoBehaviour
         
 
         if(Keyboard.current.rKey.isPressed)
+        {
+            Time.timeScale = 1;
             SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCount - 1));
+        }
+
 
         if(Keyboard.current.escapeKey.isPressed)
+        {
+            Time.timeScale = 1;
             SceneManager.LoadScene(0);
+        }
+
     }
 
     /*void EndGame()
@@ -83,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     void AddGun(int num, int gunAmount)
     {
-        GameObject gun = guns[Random.Range(0, 6)];
+        GameObject gun = guns[Random.Range(0, 7)];
 
         if(gunAmount == 0)
         {

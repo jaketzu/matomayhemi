@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
     private Transform gun;
     private Gun gunScript;
 
+    public GameObject explosion;
+
     [SerializeField]private LineRenderer lr;
 
     [SerializeField] private AudioSource audioSource;
@@ -265,6 +267,9 @@ public class Player : MonoBehaviour
 
             if (gunScript.bulletPrefab != null)
             {
+                GameObject flame = Instantiate(explosion, gunScript.muzzle.position, Quaternion.identity);
+                flame.transform.parent = gunScript.muzzle;
+
                 if(gun.name == "Grenade Launcher(Clone)" || gun.name == "HeldHG")
                 {
                     GameObject bullet = Instantiate(gunScript.bulletPrefab, gunScript.muzzle.position, gun.transform.rotation);
@@ -299,14 +304,15 @@ public class Player : MonoBehaviour
                     {
                         hitRail.collider.GetComponent<Player>().TakeDamage(gunScript.damage);
                     }
-                    else if(hitRail.collider.CompareTag("Ground"))
-                    {
-                        //ymp�rist� posahus
-                    }
                 }
             }
             else if (gun.transform.name == "Audio Blaster(Clone)")
             {
+                Animator audioBlasterAnim = gun.GetComponent<Animator>();
+                audioBlasterAnim.SetBool("Shoot", true);
+                StartCoroutine("AudioAnim");
+                //gun.GetComponent<Animator>().SetBool("Shoot", false);
+
                 //katsotaan aseen suunta
                 Vector2 direction = gun.transform.up;
 
@@ -332,6 +338,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator AudioAnim()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gun.GetComponent<Animator>().SetBool("Shoot", false);
     }
     
     private IEnumerator DrawRay(Vector2 hitPoint, LineRenderer lr)
@@ -390,7 +402,6 @@ public class Player : MonoBehaviour
         if(health <= 0)
         {
             GameObject.Find("GameManager").GetComponent<GameManager>().PlayerDead();
-            print(GameObject.Find("GameManager"));
             Destroy(gameObject);
         }
     }

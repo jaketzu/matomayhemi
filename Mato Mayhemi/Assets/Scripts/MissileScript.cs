@@ -8,12 +8,15 @@ public class MissileScript : MonoBehaviour
     public int force;
     public float radius;
     public LayerMask layerMask;
-
-    public AudioSource audioSource;
+    public GameObject explosion;
+    public AudioClip boom;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        audioSource.Play();
+        GameObject flame = Instantiate(explosion, transform.position, Quaternion.identity, null);
+        flame.transform.localScale = new Vector3(radius * 8, radius * 8, 1);
+        flame.GetComponent<AudioSource>().clip = boom;
+
         if(collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Player>().TakeDamage(damage);

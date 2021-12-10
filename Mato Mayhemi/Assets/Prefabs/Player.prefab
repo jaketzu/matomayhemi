@@ -93,6 +93,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  explosion: {fileID: 7830391174508099436, guid: ed41ed69a490b254bb6d31b9186c5566, type: 3}
   lr: {fileID: 4267909703474411855}
   audioSource: {fileID: 8573293418156937603}
   ropeAdjust: 15

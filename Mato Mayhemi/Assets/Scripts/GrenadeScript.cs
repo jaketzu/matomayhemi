@@ -8,7 +8,8 @@ public class GrenadeScript : MonoBehaviour
     public int force;
     public float radius;
     public LayerMask layerMask;
-    public AudioSource audioSource;
+    public GameObject explosion;
+    public AudioClip boom;
 
     public float timer;
 
@@ -18,7 +19,10 @@ public class GrenadeScript : MonoBehaviour
 
         if(timer <= 0)
         {
-            audioSource.Play();
+            GameObject flame = Instantiate(explosion, transform.position, Quaternion.identity, null);
+            flame.transform.localScale = new Vector3(radius * 8, radius * 8, 1);
+            flame.GetComponent<AudioSource>().clip = boom;
+
             RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, radius, transform.right, 0, layerMask);
             if(hit != null)
             {
@@ -35,8 +39,7 @@ public class GrenadeScript : MonoBehaviour
                         gameObject.GetComponent<Digging>().DestroyEnvironment();
                     }
                 }
-            }
-            
+            }        
             Destroy(gameObject);
         }
     }
