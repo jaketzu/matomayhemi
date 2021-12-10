@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         for(int i = 0; i < 3; i++)
         {
-            GameObject gun = guns[Random.Range(0, 6)];
+            GameObject gun = guns[Random.Range(0, 7)];
             Instantiate(gun, players[playerNum].transform.position, Quaternion.identity, players[playerNum].transform.GetChild(2));
             gun.SetActive(false);
         }
